@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SceneController">
+   <children>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="800.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#switchToHomePage" text="Home">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#switchToDecksPage" text="Decks">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#switchToHelpPage" text="Help">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+         <effect>
+            <Glow level="0.25" />
+         </effect>
+      </HBox>
+      <Separator prefWidth="800.0" />
+      <StackPane prefHeight="30.0" prefWidth="800.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Help Page">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
+            <Button mnemonicParsing="false" onAction="#deckChooserBtn" text="⚙" StackPane.alignment="CENTER_RIGHT">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </StackPane>
+      <Line endX="800.0" startX="1.0" />
+      <StackPane prefHeight="541.0" prefWidth="800.0">
+         <children>
+            <VBox prefHeight="541.0" prefWidth="728.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="FAQs">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What does the purpose of this application?">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="We believe that it is essential to be able to self-study in an effective manner.  To do so would require proper material distribution and pacing, &#10;which is difficult to do alone. To solve this problem, we will create a software that not only compiles your study phrases, but takes into account &#10;their difficulty and rearranges your study time to review efficiently." />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How do you create a deck?">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Click on the gear button on the top right hand corner and then click the Add Deck button." />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How do you add a card to the deck?">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Click on the Add Card button and then input data for the front of the card and then the back of the card." />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How do you remove a card from the deck?">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Click on the Remove card button on the card that you want to be removed." />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Who are the developers?">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brandon Truong Jason Khy        Phong Nguyen" wrappingWidth="103.26171875" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Us">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number: +1(800)123-1234">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email Us: RuminateCompany@gmail.com" />
+               </children>
+               <StackPane.margin>
+                  <Insets left="5.0" />
+               </StackPane.margin>
+            </VBox>
+         </children></StackPane>
+   </children>
+</FlowPane>
