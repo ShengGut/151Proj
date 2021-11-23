@@ -33,21 +33,24 @@ public class JSONReader {
 		return cardID;
 	}
 	
-	public static int cardIDToArrayIndex(int cardID) {
+	public static int cardIDToArrayIndex(File deckPath, int cardID)
+			throws FileNotFoundException, IOException, ParseException {
 		//Converts cardID to the card's index in the ArrayList "cards".
 		
 		int ia = 0;
+		generateDeck(deckPath);
+		
 		//Search through each card in "cards" for one with a matching "cardID".  
-		for(Object o : cards) {
-			JSONObject jack = (JSONObject) o;
-			if((int) (long) jack.get("cardID") == cardID)
+		for(Card c : cards) {
+			if(c.getID() == cardID)
 				return ia;
 			ia++;
 		}
 		return ia;
 	}
 
-	public static JSONArray getDeckJSONArray(File deckPath) throws FileNotFoundException, IOException, ParseException {
+	public static JSONArray getDeckJSONArray(File deckPath)
+			throws FileNotFoundException, IOException, ParseException {
 		//Gets and returns the JSONArray that stores each card within the JSON file "deckPath".  
 		
 		//Creates readers and parsers that run through the given JSON file.  
@@ -113,8 +116,8 @@ public class JSONReader {
             throws FileNotFoundException, IOException, ParseException {
         //Generates a Card instance using cardID rather than cardIndex.  
             //It does this by calling the same "generateCard()" method as normally used, but fills in the cardIndex parameter with cardID.  
-        
-        Card jack = generateCard(deckPath, cardIDToArrayIndex(cardID));
+
+        Card jack = generateCard(deckPath, cardIDToArrayIndex(deckPath, cardID));
         return jack;
     }
 	   
