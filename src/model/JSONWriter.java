@@ -11,7 +11,7 @@ import org.json.simple.parser.ParseException;
 
 import controller.Card;
 
-public class JSONWriter extends JSONCardsAbs {
+public class JSONWriter extends JSONReader {
 	
 	@SuppressWarnings("unchecked")
 	public static void writeToJSON(File deckPath, JSONObject hand) throws IOException {
