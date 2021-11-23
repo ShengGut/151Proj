@@ -48,11 +48,11 @@ public class JSONWriter extends JSONReader {
 		//First, it converts the cardID to the cardIndex.
 		int cardIndex = cardIDToArrayIndex(deckPath, cardID);
 		//Removes the card from the List.  
-		cards.remove(cardIndex);
+		cards.remove(cardIndex - 1);
 		//Grabs the JSONArray of the deck.  
 		JSONArray changer = getDeckJSONArray(deckPath);
 		//Removes the given card from the JSONArray.  
-		changer.remove(cardIndex);
+		changer.remove(cardIndex - 1);
 
 		//Creates the JSONObject "deck" that the array will be placed in.  Calls writeToJSON() to update the JSONFile.  
 		JSONObject hand = new JSONObject();
