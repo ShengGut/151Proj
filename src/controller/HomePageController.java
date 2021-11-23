@@ -25,8 +25,8 @@ public class HomePageController extends JSONReader {
 	private Stage stage, popup;
 	private Scene scene;
 	@FXML MenuButton menuBtn;
-	@FXML Label totalCardsTxt;
-	int totalCards;
+	@FXML Label totalCardsLbl, newCardLbl;
+	int newCardIni, newCardAft, totalCards;
 	
 	//This is the controller to switch to the main HomePage
 	public void switchToHomePage(ActionEvent event) throws IOException, ParseException, FileNotFoundException {
@@ -77,15 +77,17 @@ public class HomePageController extends JSONReader {
 	
 	public int setNumberOfCards(File filePath) throws FileNotFoundException, IOException, ParseException {
 		ArrayList<Card> cards = model.JSONReader.getArrayOfDeck(filePath);
+		newCardIni = totalCards;
 		totalCards = (cards.size());
-		totalCardsTxt.setText("" + totalCards);
+		totalCardsLbl.setText("" + totalCards);
+		System.out.println(newCardIni);
+		System.out.println(totalCards);
 		return totalCards;
 	}
 	
 	public void initialize() {
 		Platform.runLater(new Runnable() {
 			  @Override public void run() {
-				  totalCardsTxt.setText("" + totalCards);
 				  try {
 					setNumberOfCards(new File("src/model/decks/DefaultDeck.json"));
 				} catch (IOException | ParseException e) {
@@ -105,5 +107,9 @@ public class HomePageController extends JSONReader {
 		popup.setScene(scene);
 		popup.showAndWait();
 		setNumberOfCards(new File("src/model/decks/DefaultDeck.json"));
+		if(newCardIni + 1 == totalCards) {
+			newCardAft++;
+			newCardLbl.setText("" + newCardAft);
+		}
 	}
 }

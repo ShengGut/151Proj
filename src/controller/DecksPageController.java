@@ -97,7 +97,6 @@ public class DecksPageController extends SceneController {
 		});
 		//clear the TextEntry when finished
 		titleEntry.clear();
-	;
 	}
 	
 }

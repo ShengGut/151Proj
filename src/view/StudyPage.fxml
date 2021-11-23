@@ -121,10 +121,23 @@
                   <Font name="System Bold" size="14.0" />
                </font>
                <StackPane.margin>
-                  <Insets />
+                  <Insets left="150.0" />
                </StackPane.margin>
             </ToggleButton>
-            <Button mnemonicParsing="false" onAction="#deleteCard" text="Remove" />
+            <ToggleButton mnemonicParsing="false" onAction="#toggleFlip" prefHeight="50.0" prefWidth="120.0" text="Flip Card" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets right="150.0" />
+               </StackPane.margin>
+            </ToggleButton>
+            <Button mnemonicParsing="false" text="Remove" />
+            <Rectangle fx:id="blocker" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" opacity="0.0" stroke="TRANSPARENT" strokeType="INSIDE" width="120.0">
+               <StackPane.margin>
+                  <Insets right="600.0" />
+               </StackPane.margin>
+            </Rectangle>
          </children>
       </StackPane>
    </children>

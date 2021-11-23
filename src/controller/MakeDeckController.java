@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 public class MakeDeckController {
 	@FXML private TextField titleEntry;
 	@FXML private VBox vBoxYuh;
+	private Scene scene;
 	
 	private String title;
 
@@ -42,8 +43,6 @@ public class MakeDeckController {
 	    
 	}
 	
-	private Scene scene;
-	
 	//This is the controller for the addCard button
 	public void deckAdder(ActionEvent event) throws IOException {
 		Stage popup = new Stage();
@@ -55,7 +54,7 @@ public class MakeDeckController {
 		final Node source = (Node) event.getSource();
 		final Stage stage = (Stage) source.getScene().getWindow();
 		stage.show();
-		Label b = new Label("Default Deck");
+		Label b = new Label("jagjag");
 		b.setFont(new Font(16));
 		vBoxYuh.getChildren().addAll(b);
 		b.setTextFill(Color.web("#000000"));

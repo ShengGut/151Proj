@@ -77,9 +77,9 @@
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Text>
-            <Text layoutX="395.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
             <Text layoutX="519.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-            <Label fx:id="totalCardsTxt" layoutX="263.0" layoutY="56.0" prefHeight="17.0" prefWidth="17.0" text="0" />
+            <Label fx:id="totalCardsLbl" layoutX="263.0" layoutY="56.0" prefHeight="17.0" prefWidth="17.0" text="0" />
+            <Label fx:id="newCardLbl" layoutX="392.0" layoutY="56.0" prefHeight="17.0" prefWidth="17.0" text="0" />
          </children>
       </AnchorPane>
       <StackPane prefHeight="445.0" prefWidth="800.0">

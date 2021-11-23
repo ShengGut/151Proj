@@ -142,32 +142,12 @@
 		},
 		{
 			"nextReviewDate": 0,
-			"backSide": "Spicy",
+			"backSide": "Funds",
 			"difficultyFactor": 2.5,
 			"cardID": 1,
 			"rating": 0,
 			"interval": 1,
-			"frontSide": "Chicken",
-			"repetition": 0
-		},
-		{
-			"nextReviewDate": 0,
-			"backSide": "F",
-			"difficultyFactor": 2.5,
-			"cardID": 1,
-			"rating": 0,
-			"interval": 1,
-			"frontSide": "N",
-			"repetition": 0
-		},
-		{
-			"nextReviewDate": 0,
-			"backSide": "L",
-			"difficultyFactor": 2.5,
-			"cardID": 1,
-			"rating": 0,
-			"interval": 1,
-			"frontSide": "N",
+			"frontSide": "Trust",
 			"repetition": 0
 		}
 	]

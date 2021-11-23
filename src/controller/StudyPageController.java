@@ -11,34 +11,23 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 
 public class StudyPageController extends SceneController {
 
 	private double newX = 0;
-	int frontside = 0;
-	int backside = 0;
-	int totalCards;
 	int startingCard = 1;
-	private int cardID = 0;
-	@FXML Label frontSide;
-	@FXML Label backSide;
-	@FXML Label cardPosition;
+	int totalCards, frontside, backside, toggle = 0;
+	@FXML Label frontSide, backSide, cardPosition;
 	
 	// This is for the toggle button that displays the cards side-by-side
 	@FXML
-	Rectangle firstSquare;
+	Rectangle firstSquare, secondSquare, blocker;
 	@FXML
-	Rectangle secondSquare;
-	@FXML
-	Polygon leftTriangle;
-	@FXML
-	Polygon rightTriangle;
+	Polygon leftTriangle, rightTriangle;
 	
 	public int setNumberOfCards(File filePath) throws FileNotFoundException, IOException, ParseException {
 		ArrayList<Card> cards = model.JSONReader.getArrayOfDeck(filePath);
@@ -65,7 +54,7 @@ public class StudyPageController extends SceneController {
 			});
 	}
 	
-	public void ToggleBtn(ActionEvent event) throws IOException, ParseException {
+	public void ToggleBtn(ActionEvent event) throws IOException {
 		if (newX == 0) {
 			newX = -200;
 			firstSquare.setTranslateX(newX);
@@ -75,6 +64,8 @@ public class StudyPageController extends SceneController {
 			backSide.setTranslateX(newX);
 			leftTriangle.setVisible(false);
 			rightTriangle.setVisible(false);
+			blocker.setTranslateX(225);
+			frontSide.setOpacity(1);
 			backSide.setOpacity(1);
 		} else {
 			newX = 0;
@@ -84,7 +75,20 @@ public class StudyPageController extends SceneController {
 			backSide.setTranslateX(newX);
 			leftTriangle.setVisible(true);
 			rightTriangle.setVisible(true);
+			blocker.setTranslateX(0);
 			backSide.setOpacity(0);
+		}
+	}
+	
+	public void toggleFlip(ActionEvent event)  throws IOException {
+		if(toggle == 0) {
+			backSide.setOpacity(1);
+			frontSide.setOpacity(0);
+			toggle = 1;
+		} else if (toggle == 1) {
+			backSide.setOpacity(0);
+			frontSide.setOpacity(1);
+			toggle = 0;
 		}
 	}
 	
