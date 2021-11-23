@@ -11,35 +11,41 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 public class StudyPageController extends SceneController {
 
 	private double newX = 0;
 	int startingCard = 1;
+	private int cardID = 5;
 	int totalCards, frontside, backside, toggle = 0;
-	@FXML Label frontSide, backSide, cardPosition;
-	
+	@FXML
+	Label frontSide, backSide, cardPosition;
+
 	// This is for the toggle button that displays the cards side-by-side
 	@FXML
 	Rectangle firstSquare, secondSquare, blocker;
 	@FXML
 	Polygon leftTriangle, rightTriangle;
-	
+
 	public int setNumberOfCards(File filePath) throws FileNotFoundException, IOException, ParseException {
 		ArrayList<Card> cards = model.JSONReader.getArrayOfDeck(filePath);
 		totalCards = (cards.size());
 		return totalCards;
 	}
-	
-	//Initialize the text to show the total amount of Cards in the deck
+
+	// Initialize the text to show the total amount of Cards in the deck
 	public void initialize() {
 		Platform.runLater(new Runnable() {
-			  @Override public void run() {
-				  try {
+			@Override
+			public void run() {
+				try {
 					cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/DefaultDeck.json")));
 					File deckPath = new File("src/model/decks/DefaultDeck.json");
 					model.JSONReader.getArrayOfDeck(deckPath);
@@ -50,10 +56,10 @@ public class StudyPageController extends SceneController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			  }
-			});
+			}
+		});
 	}
-	
+
 	public void ToggleBtn(ActionEvent event) throws IOException {
 		if (newX == 0) {
 			newX = -200;
@@ -65,6 +71,8 @@ public class StudyPageController extends SceneController {
 			leftTriangle.setVisible(false);
 			rightTriangle.setVisible(false);
 			blocker.setTranslateX(225);
+			blocker.setOpacity(1);
+			blocker.setFill(Color.web("f4f4f4"));
 			frontSide.setOpacity(1);
 			backSide.setOpacity(1);
 		} else {
@@ -76,12 +84,13 @@ public class StudyPageController extends SceneController {
 			leftTriangle.setVisible(true);
 			rightTriangle.setVisible(true);
 			blocker.setTranslateX(0);
+			blocker.setOpacity(0);
 			backSide.setOpacity(0);
 		}
 	}
-	
-	public void toggleFlip(ActionEvent event)  throws IOException {
-		if(toggle == 0) {
+
+	public void toggleFlip(ActionEvent event) throws IOException {
+		if (toggle == 0) {
 			backSide.setOpacity(1);
 			frontSide.setOpacity(0);
 			toggle = 1;
@@ -91,7 +100,7 @@ public class StudyPageController extends SceneController {
 			toggle = 0;
 		}
 	}
-	
+
 	public void nextArrow(MouseEvent event) throws IOException, ParseException {
 		if (startingCard != setNumberOfCards(new File("src/model/decks/DefaultDeck.json"))) {
 			File deckPath = new File("src/model/decks/DefaultDeck.json");
@@ -107,22 +116,31 @@ public class StudyPageController extends SceneController {
 			}
 		}
 	}
-	
+
 	public void backArrow(MouseEvent event) throws IOException, ParseException {
 		if (startingCard != 1) {
-		File deckPath = new File("src/model/decks/DefaultDeck.json");
-		ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(deckPath);
-		frontside--;
-		backside--;
-		startingCard--;
-		cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/DefaultDeck.json")));
-		frontSide.setText(Cards.get(frontside).getFrontSide());
-		backSide.setText(Cards.get(backside).getBackSide());
-		if (startingCard == 9) {
-			cardPosition.setPadding(new Insets(0, 0, 0, 0));
-		}
+			File deckPath = new File("src/model/decks/DefaultDeck.json");
+			ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(deckPath);
+			frontside--;
+			backside--;
+			startingCard--;
+			cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/DefaultDeck.json")));
+			frontSide.setText(Cards.get(frontside).getFrontSide());
+			backSide.setText(Cards.get(backside).getBackSide());
+			if (startingCard == 9) {
+				cardPosition.setPadding(new Insets(0, 0, 0, 0));
+			}
 		}
 	}
-	
 
+	// Call JSONWriter method in another class to delete the card
+	public void deleteCard(ActionEvent event) throws FileNotFoundException, IOException, ParseException {
+		File path = new File("src/model/decks/DefaultDeck.json");
+		model.JSONWriter.removeCard(path, cardID);
+
+		// Close pop-up window
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setTitle("Card deleted");
+		window.close();
+	}
 }

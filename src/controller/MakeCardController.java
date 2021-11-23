@@ -46,8 +46,7 @@ public class MakeCardController {
 		//ratingEntry();
 		
 		File path = new File("src/model/decks/DefaultDeck.json");
-		if(path.length() == 0)
-			model.JSONWriter.fillDeckTemplate(path);
+		
 		
 		model.JSONWriter.createCard(path, frontSide, backSide, rating, repetition, interval, nextReviewDate); 
 		

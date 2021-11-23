@@ -80,8 +80,6 @@ public class HomePageController extends JSONReader {
 		newCardIni = totalCards;
 		totalCards = (cards.size());
 		totalCardsLbl.setText("" + totalCards);
-		System.out.println(newCardIni);
-		System.out.println(totalCards);
 		return totalCards;
 	}
 	

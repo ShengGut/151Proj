@@ -65,7 +65,9 @@ public class JSONWriter extends JSONReader {
 			throws FileNotFoundException, IOException, ParseException {
 		//Creates a Card instance using inputed parameters and adds it to the List of "cards".
 		//Includes the Card in the linked JSON file.
-
+		//If the file is completely empty, then fill the file with a skeleton for the deck.
+		 if(deckPath.length() == 0)
+	            fillDeckTemplate(deckPath);
 		//Grabs the JSONArray of the deck. 
 		JSONArray changer = getDeckJSONArray(deckPath);
 		
