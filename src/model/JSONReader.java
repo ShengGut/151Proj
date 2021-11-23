@@ -101,6 +101,7 @@ public class JSONReader {
         
         int ia = 0;
         Card card = null;
+        cards.removeAll(cards);
         int deckSize = getDeckJSONArray(deckPath).size();
         
         for(ia = 0; ia < deckSize; ia++) {
