@@ -21,16 +21,6 @@ public class JSONWriter extends JSONReader {
 		fw.close();
 	}
 
-
-
-
-
-
-
-
-
-
-
 	/*
 	public static void createNewDeck(String title) throws IOException {
 		

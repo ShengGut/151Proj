@@ -1,14 +1,1 @@
-{
-	"deck": [
-		{
-			"nextReviewDate": 0,
-			"backSide": "",
-			"difficultyFactor": 2.5,
-			"cardID": 64,
-			"rating": 0,
-			"interval": 1,
-			"frontSide": "123123123",
-			"repetition": 0
-		}
-	]
-}
+{"deck":[{"nextReviewDate":0,"backSide":"","difficultyFactor":2.5,"cardID":64,"rating":0,"interval":1,"frontSide":"123123123","repetition":0}]}
