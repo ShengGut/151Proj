@@ -44,16 +44,6 @@
 			"nextReviewDate": 0,
 			"backSide": "15",
 			"difficultyFactor": 2.5,
-			"cardID": 5,
-			"rating": 0,
-			"interval": 1,
-			"frontSide": "15",
-			"repetition": 0
-		},
-		{
-			"nextReviewDate": 0,
-			"backSide": "15",
-			"difficultyFactor": 2.5,
 			"cardID": 6,
 			"rating": 0,
 			"interval": 1,
@@ -148,16 +138,6 @@
 			"rating": 0,
 			"interval": 1,
 			"frontSide": "Trust",
-			"repetition": 0
-		},
-		{
-			"nextReviewDate": 0,
-			"backSide": "back",
-			"difficultyFactor": 2.5,
-			"cardID": 16,
-			"rating": 0,
-			"interval": 1,
-			"frontSide": "front",
 			"repetition": 0
 		}
 	]

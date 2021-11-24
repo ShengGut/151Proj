@@ -48,13 +48,13 @@ public class JSONWriter extends JSONReader {
 		//This code simply removes a chosen card from the deck using cardID.  
 		
 		//First, it converts the cardID to the cardIndex.
-		int cardIndex = cardIDToArrayIndex(cardID);
+		int cardIndex = cardIDToArrayIndex(deckPath, cardID);
 		//Removes the card from the List.  
-		cards.remove(cardIndex);
+		cards.remove(cardIndex - 1);
 		//Grabs the JSONArray of the deck.  
 		JSONArray changer = getDeckJSONArray(deckPath);
 		//Removes the given card from the JSONArray.  
-		changer.remove(cardIndex);
+		changer.remove(cardIndex - 1);
 
 		//Creates the JSONObject "deck" that the array will be placed in.  Calls writeToJSON() to update the JSONFile.  
 		JSONObject hand = new JSONObject();
@@ -67,6 +67,7 @@ public class JSONWriter extends JSONReader {
 			throws FileNotFoundException, IOException, ParseException {
 		//Creates a Card instance using inputed parameters and adds it to the List of "cards".
 		//Includes the Card in the linked JSON file.
+		
 		//If the file is completely empty, then fill the file with a skeleton for the deck.
 		 if(deckPath.length() == 0)
 	            fillDeckTemplate(deckPath);
@@ -121,7 +122,7 @@ public class JSONWriter extends JSONReader {
 			throws FileNotFoundException, IOException, ParseException {
 		
 		JSONArray changer = getDeckJSONArray(deckPath);
-		int target = cardIDToArrayIndex(cardID);
+		int target = cardIDToArrayIndex(deckPath, cardID);
 		if(key != null && key != "cardID" && value != null){
 
 			JSONObject jack = (JSONObject) changer.get(target);
