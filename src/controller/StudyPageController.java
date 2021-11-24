@@ -112,6 +112,8 @@ public class StudyPageController extends SceneController {
 
 	public void nextArrow(MouseEvent event) throws IOException, ParseException {
 		if (startingCard != setNumberOfCards(new File("src/model/decks/DefaultDeck.json"))) {
+			System.out.println(setNumberOfCards(new File("src/model/decks/DefaultDeck.json")));
+			System.out.println(startingCard);
 			File deckPath = new File("src/model/decks/DefaultDeck.json");
 			ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(deckPath);
 			// Go through Cards to get their ID for removeCard
