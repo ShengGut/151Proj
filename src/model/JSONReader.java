@@ -23,13 +23,15 @@ public class JSONReader {
 		generateDeck(deckPath);
 		return cards;
 	}
-	
+
 	public static int generateCardID(File deckPath) 
 			throws FileNotFoundException, IOException, ParseException {
 		//Creates a cardID int based solely on the latest cardID found in the array.  
 		
 		generateDeck(deckPath);
-		int cardID = cards.get(cards.size() - 1).getID() + 1;
+		int cardID = 1;
+		if(cards.size() != 0)
+			cardID = cards.get(cards.size() - 1).getID() + 1;
 		return cardID;
 	}
 	
