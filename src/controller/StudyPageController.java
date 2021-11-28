@@ -11,7 +11,9 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -26,6 +28,24 @@ public class StudyPageController extends SceneController {
 	int totalCards, frontside, backside, toggle = 0;
 	@FXML
 	Label frontSide, backSide, cardPosition;
+	
+	// added from StudyController
+	private static int rating;
+	
+	public void getRatingEntry(ActionEvent event) {
+		Object node = event.getSource();
+		ToggleButton b = (ToggleButton) node;
+		System.out.println(b.getText());
+		if (b.getText().equals("Easy"))
+			rating = 1;
+		else if (b.getText().equals("Normal"))
+			rating = 2;
+		else if (b.getText().equals("Hard"))
+			rating = 3;
+		else if (b.getText().equals("Difficult"))
+			rating = 4;
+		System.out.println("rating: " +rating);
+	}
 
 	// This is for the toggle button that displays the cards side-by-side
 	@FXML
@@ -68,6 +88,14 @@ public class StudyPageController extends SceneController {
 			}
 		});
 	}
+	
+	// call studyCalculation in CardReviewer on action when rating is selected
+		public void updateCardStats(ActionEvent event) throws IOException, ParseException {
+			getRatingEntry(event);
+			File path = new File("src/model/decks/DefaultDeck.json");
+			Card card = model.JSONReader.generateCard(path, cardID - 1);
+			CardReviewer.studyCalculation(card, rating);
+		}
 
 	public void ToggleBtn(ActionEvent event) throws IOException {
 		if (newX == 0) {
@@ -99,6 +127,7 @@ public class StudyPageController extends SceneController {
 	}
 
 	public void toggleFlip(ActionEvent event) throws IOException {
+		System.out.println("Testing toggleflip");
 		if (toggle == 0) {
 			backSide.setOpacity(1);
 			frontSide.setOpacity(0);

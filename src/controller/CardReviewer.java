@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.File;
+import java.sql.Date;
+import java.time.Duration;
 
 public class CardReviewer {
 	
@@ -10,6 +12,7 @@ public class CardReviewer {
 		int interval = card.getInterval();
 		double difficulty = card.getDifficultyFactor();
 		
+		System.out.println("Testing studyCalculation activation");
 		assert rating >= 0  && rating <= 5: "Rating is a grading scale between 0 and 5";
 		
 		difficulty = Math.max(1.2, difficulty + 0.1 - (5.0 - rating) * (0.08 + (5.0 - rating) * 0.02));
@@ -26,13 +29,13 @@ public class CardReviewer {
 		else
 			interval = (int) Math.round(interval * difficulty);
 		
+		
 		int msInADay = 60 * 60 * 24 * 1000;
-		
 		long present = System.currentTimeMillis();
-		long nextReviewDate = present + msInADay * interval;
-		
-		File path = new File("src/model/DefaultDeck.json");
+		long nextReviewDate =  msInADay + present * interval;
+		File path = new File("src/model/decks/DefaultDeck.json");
 		int cardID = card.getID();
+		
 		
 		try {
 		model.JSONWriter.updateCard(path, cardID, "nextReviewDate", nextReviewDate);

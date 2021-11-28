@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudyPageController">
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudyPageController">
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="800.0">
          <children>
@@ -129,6 +129,10 @@
                   <Insets right="600.0" />
                </StackPane.margin>
             </Rectangle>
+            <Button mnemonicParsing="false" onAction="#deleteCard" text="Remove Card">
+               <StackPane.margin>
+                  <Insets right="600.0" />
+               </StackPane.margin></Button>
             <ToggleButton mnemonicParsing="false" onAction="#ToggleBtn" prefWidth="120.0" text="Display Side-By-Side" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -137,10 +141,38 @@
                   <Insets left="150.0" />
                </StackPane.margin>
             </ToggleButton>
-            <Button mnemonicParsing="false" onAction="#deleteCard" text="Remove Card">
+            <ToggleButton accessibleRole="BUTTON" mnemonicParsing="false" onAction="#updateCardStats" prefHeight="31.0" prefWidth="74.0" text="Easy" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
                <StackPane.margin>
-                  <Insets right="600.0" />
-               </StackPane.margin></Button>
+                  <Insets right="230.0" top="-100.0" />
+               </StackPane.margin>
+            </ToggleButton>
+            <ToggleButton accessibleRole="BUTTON" mnemonicParsing="false" onAction="#updateCardStats" prefHeight="31.0" prefWidth="74.0" text="Normal" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets right="70.0" top="-100.0" />
+               </StackPane.margin>
+            </ToggleButton>
+            <ToggleButton accessibleRole="BUTTON" mnemonicParsing="false" onAction="#updateCardStats" prefHeight="31.0" prefWidth="74.0" text="Hard" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets right="-90.0" top="-100.0" />
+               </StackPane.margin>
+            </ToggleButton>
+            <ToggleButton accessibleRole="BUTTON" mnemonicParsing="false" onAction="#updateCardStats" prefHeight="31.0" prefWidth="74.0" text="Difficult" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets right="-250.0" top="-100.0" />
+               </StackPane.margin>
+            </ToggleButton>
          </children>
       </StackPane>
    </children>

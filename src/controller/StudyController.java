@@ -7,11 +7,12 @@ import org.json.simple.parser.ParseException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class StudyController {
-	@FXML
-	private TextField ratingEntry;
+	
+	@FXML private Label ratingEntry;
 	private static int rating;
 
 	public void ratingEntry() {
