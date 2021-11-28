@@ -116,9 +116,9 @@ public class JSONWriter extends JSONReader {
 	
 	
 	//code is under development and is still experimental.
-	public static boolean updateCard(File deckPath, int cardID, String key, Object value) 
+	public static boolean updateCard(File deckPath, int cardID, String key, Object value, String key2, Object value2, String key3, Object value3, String key4, Object value4) 
 			throws FileNotFoundException, IOException, ParseException {
-		
+		// model.JSONWriter.updateCard(path, cardID, "nextReviewDate", nextReviewDate, "rating", rating, "repetition", repetition, "interval", interval);
 		JSONArray changer = getDeckJSONArray(deckPath);
 		int target = cardIDToArrayIndex(deckPath, cardID);
 		if(key != null && key != "cardID" && value != null){
@@ -139,6 +139,9 @@ public class JSONWriter extends JSONReader {
 				
 			cards.add(king);
 			cards.remove(target);
+			jack.put(key2, value2);
+			jack.put(key3, value3);
+			jack.put(key4, value4);
 			changer.remove(target);
 			changer.add(jack);
 

@@ -37,8 +37,14 @@ public class Card {
 	public int getRepetition() {
 		return repetition;
 	}
+	public int setRepetition(int newRepetition) {
+		return repetition = newRepetition;
+	}
 	public int getInterval() {
 		return interval;
+	}
+	public int setInterval(int newInterval) {
+		return interval = newInterval;
 	}
 	public double getDifficultyFactor() {
 		return difficultyFactor;

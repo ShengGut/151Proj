@@ -28,8 +28,9 @@ public class CardReviewer {
 			interval = 6;
 		else
 			interval = (int) Math.round(interval * difficulty);
-		
-		
+		System.out.println("StudyCalculation rating: " + rating);
+		System.out.println("StudyCalculation repetition: " + repetition);
+		System.out.println("StudyCalculation interval: " + interval);
 		int msInADay = 60 * 60 * 24 * 1000;
 		long present = System.currentTimeMillis();
 		long nextReviewDate =  msInADay + present * interval;
@@ -38,7 +39,8 @@ public class CardReviewer {
 		
 		
 		try {
-		model.JSONWriter.updateCard(path, cardID, "nextReviewDate", nextReviewDate);
+		model.JSONWriter.updateCard(path, cardID, "nextReviewDate", nextReviewDate, "rating", rating, "repetition", repetition, "interval", interval);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
