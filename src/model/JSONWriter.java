@@ -50,7 +50,7 @@ public class JSONWriter extends JSONReader {
 		//Removes the card from the List.  
 		cards.remove(cardIndex);
 		//Grabs the JSONArray of the deck.  
-		JSONArray changer = getDeckJSONArray(deckPath);
+		JSONArray changer = getDeckJSONArrayHand(deckPath);
 		//Removes the given card from the JSONArray.  
 		changer.remove(cardIndex);
 
@@ -61,7 +61,7 @@ public class JSONWriter extends JSONReader {
 		
 	}
 	
-	public static boolean createCard(File deckPath, String frontSide, String backSide, int rating, int repetition, int interval, long nextReviewDate)
+	public static boolean createCard(File deckPath, String frontSide, String backSide, int rating, int repetition, int interval, long nextReviewDate, long exactReviewMoment)
 			throws FileNotFoundException, IOException, ParseException {
 		//Creates a Card instance using inputed parameters and adds it to the List of "cards".
 		//Includes the Card in the linked JSON file.
@@ -70,19 +70,14 @@ public class JSONWriter extends JSONReader {
 		 if(deckPath.length() == 0)
 	            fillDeckTemplate(deckPath);
 		//Grabs the JSONArray of the deck. 
-		JSONArray changer = getDeckJSONArray(deckPath);
+		JSONArray changer = getDeckJSONArrayHand(deckPath);
 		
 		if(frontSide != null && backSide != null && changer != null) {
 			//Sets up the cardID.  
 			int cardID = 0;
 			//Creates a Card instance and adds it to the List.  
-			Card jack = new Card(cardID, frontSide, backSide, rating, repetition, interval, nextReviewDate);
+			Card jack = new Card(cardID, frontSide, backSide, rating, repetition, interval, nextReviewDate, exactReviewMoment);
 			cards.add(jack);
-
-			/*
-			if(changer.size() != 0)
-				cardID = (int) (long) ((JSONObject) changer.get(changer.size() - 1)).get("cardID") + 1;
-			*/
 			
 			//Calls generateCardID() to make a new cardID int based on the latest cardID in the array.  
 			cardID = generateCardID(deckPath);
@@ -119,7 +114,7 @@ public class JSONWriter extends JSONReader {
 	public static boolean updateCard(File deckPath, int cardID, String key, Object value, String key2, Object value2, String key3, Object value3, String key4, Object value4) 
 			throws FileNotFoundException, IOException, ParseException {
 		// model.JSONWriter.updateCard(path, cardID, "nextReviewDate", nextReviewDate, "rating", rating, "repetition", repetition, "interval", interval);
-		JSONArray changer = getDeckJSONArray(deckPath);
+		JSONArray changer = getDeckJSONArrayHand(deckPath);
 		int target = cardIDToArrayIndex(deckPath, cardID);
 		if(key != null && key != "cardID" && value != null){
 

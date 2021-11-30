@@ -51,7 +51,7 @@ public class JSONReader {
 		return ia;
 	}
 
-	public static JSONArray getDeckJSONArray(File deckPath)
+	public static JSONArray getDeckJSONArrayHand(File deckPath)
 			throws FileNotFoundException, IOException, ParseException {
 		//Gets and returns the JSONArray that stores each card within the JSON file "deckPath".  
 		
@@ -75,8 +75,9 @@ public class JSONReader {
         int repetition = (int) (long) joker.get("repetition");
         int interval = (int) (long) joker.get("interval");
         long nextReviewDate = (long) joker.get("nextReviewDate");
+        long exactReviewMoment = (long) joker.get("exactReviewMoment");
         //Instantiates the card.  
-        Card jack = new Card(cardID, frontSide, backSide, rating, repetition, interval, nextReviewDate);
+        Card jack = new Card(cardID, frontSide, backSide, rating, repetition, interval, nextReviewDate, exactReviewMoment);
         return jack;
     }
     
@@ -87,7 +88,7 @@ public class JSONReader {
         Card jack = null; 
         
         //Grabs the JSONArray of cards in the JSONFile using getDeckJSONArray()
-        JSONArray hand = getDeckJSONArray(deckPath);
+        JSONArray hand = getDeckJSONArrayHand(deckPath);
         //Gets the specific JSONObject that represents the card identified by the cardIndex parameter.  
         JSONObject joker = (JSONObject) hand.get(cardIndex);
         //Calls setupCard() to literally setup the card using information from the JSONObject obtained above.  
@@ -104,7 +105,7 @@ public class JSONReader {
         int ia = 0;
         Card card = null;
         cards.removeAll(cards);
-        int deckSize = getDeckJSONArray(deckPath).size();
+        int deckSize = getDeckJSONArrayHand(deckPath).size();
         
         for(ia = 0; ia < deckSize; ia++) {
             card = generateCard(deckPath, ia);
@@ -130,7 +131,7 @@ public class JSONReader {
     	generateDeck(deckPath);
     	ArrayList<Card> hand = new ArrayList<Card>();
     	
-    	for(int ia = 0; ia < getDeckJSONArray(deckPath).size(); ia++)
+    	for(int ia = 0; ia < getDeckJSONArrayHand(deckPath).size(); ia++)
     		hand.add(generateCard(deckPath, ia));
     	
     	return hand;

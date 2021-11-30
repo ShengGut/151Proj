@@ -1,8 +1,13 @@
 package controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Date;
 import java.time.Duration;
+import java.util.ArrayList;
+
+import org.json.simple.parser.ParseException;
 
 public class CardReviewer {
 	
@@ -28,6 +33,9 @@ public class CardReviewer {
 			interval = 6;
 		else
 			interval = (int) Math.round(interval * difficulty);
+		
+		card.setExactReviewMoment();
+		
 		System.out.println("StudyCalculation rating: " + rating);
 		System.out.println("StudyCalculation repetition: " + repetition);
 		System.out.println("StudyCalculation interval: " + interval);
@@ -46,6 +54,28 @@ public class CardReviewer {
 		}
 	}
 	
+	public static boolean isCardHidden(Card card) {
+		
+		if(card.getNextReviewDate() - System.currentTimeMillis() >= card.getExactReviewMoment())
+			return false;
+		return true;
+		
+	}
 	
+	public static ArrayList<Card> returnShowingCards(String deckTitle) 
+			throws FileNotFoundException, IOException, ParseException {
+		
+		File deckFile = model.FileController.getDeckFileFromTitle(deckTitle);
+		ArrayList<Card> cards = model.JSONReader.getArrayOfDeck(deckFile);
+		ArrayList<Card> shownCards = new ArrayList<>();
+		
+		for(Card c : cards) {
+			if(!isCardHidden(c))
+				shownCards.add(c);
+		}
+		
+		return shownCards;
+		
+	}
 	
 }

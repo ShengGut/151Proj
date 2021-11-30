@@ -1,15 +1,23 @@
-package controller;
+package model;
 
 import java.io.*;
 import java.util.ArrayList;
 
 public class FileController {
     
-    private ArrayList<File> decks;
-    String directoryPath = "src/model";
-    File binder = new File(directoryPath);
+    private static ArrayList<File> decks;
+    private static String directoryPath = "src/model";
+    private static File binder = new File(directoryPath);
+
+    public static int getDecksLength() {
+        return binder.list().length;
+    }
     
-    public boolean fillDecks() {
+    public static ArrayList<File> returnDecks(){
+    	return decks;
+    }
+
+    public static boolean fillDecks() {
         String[] fileList = binder.list();
         if(fileList != null) {
             for(String s : fileList)
@@ -19,11 +27,7 @@ public class FileController {
         return false;
     }
     
-    public int getDecksLength() {
-        return binder.list().length;
-    }
-
-    public File getDeckFile(String title) {
+    public static File getDeckFileFromTitle(String title) {
         
         //check if deck exists first.  
         return new File(directoryPath + "/" + title + ".json");

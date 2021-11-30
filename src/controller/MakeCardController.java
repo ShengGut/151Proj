@@ -27,6 +27,7 @@ public class MakeCardController {
 	private int repetition = 0;
 	private int interval = 1;
 	private long nextReviewDate;
+	private long exactReviewMoment;
 	
 	public void frontEntry() {
 		frontSide = frontEntry.getText();
@@ -48,7 +49,7 @@ public class MakeCardController {
 		File path = new File("src/model/decks/DefaultDeck.json");
 		
 		
-		model.JSONWriter.createCard(path, frontSide, backSide, rating, repetition, interval, nextReviewDate); 
+		model.JSONWriter.createCard(path, frontSide, backSide, rating, repetition, interval, nextReviewDate, exactReviewMoment); 
 		
 		// Close pop-up window 
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
