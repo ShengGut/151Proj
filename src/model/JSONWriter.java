@@ -92,6 +92,7 @@ public class JSONWriter extends JSONReader {
 			joker.put("interval", interval);
 			joker.put("difficultyFactor", 2.5);
 			joker.put("nextReviewDate", nextReviewDate);
+			joker.put("exactReviewMoment", exactReviewMoment);
 			
 			//Adds the previous JSONObject into the JSONArray extracted from the file.  
 			changer.add(joker);
