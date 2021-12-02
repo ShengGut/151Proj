@@ -31,14 +31,126 @@ public class DecksPageController extends SceneController {
 	private Scene scene;
 	private String title;
 	int x = 260;
-	
+	HomePageController hp = new HomePageController();
+	MakeCardController mc = new MakeCardController();
+	StudyPageController sp = new StudyPageController();
 
 	public void titleEntry() {
 		title = titleEntry.getText();
 	}
 	
 	//This is the controller to switch to the decks study page
-	public void switchToStudyPage(MouseEvent event) throws IOException, ParseException {
+	public void switchToStudyPage1(MouseEvent event) throws IOException, ParseException {
+		hp.changer1();
+		mc.changer1();
+		sp.changer1();
+		FlowPane root = (FlowPane)FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	//This is the controller to switch to the decks study page
+	public void switchToStudyPage2(MouseEvent event) throws IOException, ParseException {
+		hp.changer2();
+		mc.changer2();
+		sp.changer2();
+		FlowPane root = (FlowPane)FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	//This is the controller to switch to the decks study page
+	public void switchToStudyPage3(MouseEvent event) throws IOException, ParseException {
+		hp.changer3();
+		mc.changer3();
+		sp.changer3();
+		FlowPane root = (FlowPane)FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	//This is the controller to switch to the decks study page
+	public void switchToStudyPage4(MouseEvent event) throws IOException, ParseException {
+		hp.changer4();
+		mc.changer4();
+		sp.changer4();
+		FlowPane root = (FlowPane)FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	//This is the controller to switch to the decks study page
+	public void switchToStudyPage5(MouseEvent event) throws IOException, ParseException {
+		hp.changer5();
+		mc.changer5();
+		sp.changer5();
+		FlowPane root = (FlowPane)FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	//This is the controller to switch to the decks study page
+	public void switchToStudyPage6(MouseEvent event) throws IOException, ParseException {
+		hp.changer6();
+		mc.changer6();
+		sp.changer6();
+		FlowPane root = (FlowPane)FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	//This is the controller to switch to the decks study page
+	public void switchToStudyPage7(MouseEvent event) throws IOException, ParseException {
+		hp.changer7();
+		mc.changer7();
+		sp.changer7();
+		FlowPane root = (FlowPane)FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	//This is the controller to switch to the decks study page
+	public void switchToStudyPage8(MouseEvent event) throws IOException, ParseException {
+		hp.changer8();
+		mc.changer8();
+		sp.changer8();
+		FlowPane root = (FlowPane)FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	//This is the controller to switch to the decks study page
+	public void switchToStudyPage9(MouseEvent event) throws IOException, ParseException {
+		hp.changer9();
+		mc.changer9();
+		sp.changer9();
+		FlowPane root = (FlowPane)FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	//This is the controller to switch to the decks study page
+	public void switchToStudyPage10(MouseEvent event) throws IOException, ParseException {
+		hp.changer10();
+		mc.changer10();
+		sp.changer10();
 		FlowPane root = (FlowPane)FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);

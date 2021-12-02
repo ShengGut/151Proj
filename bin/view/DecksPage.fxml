@@ -47,19 +47,136 @@
          <children>
             <StackPane fx:id="stckPane" prefHeight="418.0" prefWidth="801.0">
                <children>
-                  <Rectangle fx:id="deck" arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="200.0" onMouseClicked="#switchToStudyPage" smooth="false" stroke="BLACK" strokeType="INSIDE" width="150.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="175.0" onMouseClicked="#switchToStudyPage1" smooth="false" stroke="BLACK" strokeType="INSIDE" width="125.0">
                      <StackPane.margin>
-                        <Insets bottom="200.0" right="630.0" />
+                        <Insets bottom="200.0" right="660.0" />
                      </StackPane.margin>
                   </Rectangle>
-                  <Text onMouseClicked="#switchToStudyPage" strokeType="OUTSIDE" strokeWidth="0.0" text="Default &#10;Deck" textAlignment="CENTER">
+                  <Label fx:id="deck1" text="Default&#10;Deck" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                      <StackPane.margin>
-                        <Insets bottom="200.0" right="630.0" />
+                        <Insets bottom="200.0" right="660.0" />
                      </StackPane.margin>
-                  </Text>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="175.0" onMouseClicked="#switchToStudyPage2" smooth="false" stroke="BLACK" strokeType="INSIDE" width="125.0">
+                     <StackPane.margin>
+                        <Insets bottom="200.0" right="330.0" />
+                     </StackPane.margin>
+                  </Rectangle>
+                  <Label fx:id="deck2" text="CustomDeck2">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="200.0" right="330.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="175.0" onMouseClicked="#switchToStudyPage3" smooth="false" stroke="BLACK" strokeType="INSIDE" width="125.0">
+                     <StackPane.margin>
+                        <Insets bottom="200.0" />
+                     </StackPane.margin>
+                  </Rectangle>
+                  <Label fx:id="deck3" text="Deck 3">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="200.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="175.0" onMouseClicked="#switchToStudyPage4" smooth="false" stroke="BLACK" strokeType="INSIDE" width="125.0">
+                     <StackPane.margin>
+                        <Insets bottom="200.0" right="-330.0" />
+                     </StackPane.margin>
+                  </Rectangle>
+                  <Label fx:id="deck4" text="Deck 4">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="200.0" right="-330.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="175.0" onMouseClicked="#switchToStudyPage5" smooth="false" stroke="BLACK" strokeType="INSIDE" width="125.0">
+                     <StackPane.margin>
+                        <Insets bottom="200.0" right="-660.0" />
+                     </StackPane.margin>
+                  </Rectangle>
+                  <Label fx:id="deck5" text="Deck 5">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="200.0" right="-660.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="175.0" onMouseClicked="#switchToStudyPage6" smooth="false" stroke="BLACK" strokeType="INSIDE" width="125.0">
+                     <StackPane.margin>
+                        <Insets bottom="-200.0" right="660.0" />
+                     </StackPane.margin>
+                  </Rectangle>
+                  <Label fx:id="deck6" text="Deck 6">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="-200.0" right="660.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="175.0" onMouseClicked="#switchToStudyPage7" smooth="false" stroke="BLACK" strokeType="INSIDE" width="125.0">
+                     <StackPane.margin>
+                        <Insets bottom="-200.0" right="330.0" />
+                     </StackPane.margin>
+                  </Rectangle>
+                  <Label fx:id="deck7" text="Deck 7">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="-200.0" right="331.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="175.0" onMouseClicked="#switchToStudyPage8" smooth="false" stroke="BLACK" strokeType="INSIDE" width="125.0">
+                     <StackPane.margin>
+                        <Insets bottom="-200.0" />
+                     </StackPane.margin>
+                  </Rectangle>
+                  <Label fx:id="deck8" text="Deck 8">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="-200.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="175.0" onMouseClicked="#switchToStudyPage9" smooth="false" stroke="BLACK" strokeType="INSIDE" width="125.0">
+                     <StackPane.margin>
+                        <Insets bottom="-200.0" right="-330.0" />
+                     </StackPane.margin>
+                  </Rectangle>
+                  <Label fx:id="deck9" text="Deck 9">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="-200.0" right="-330.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="175.0" onMouseClicked="#switchToStudyPage10" smooth="false" stroke="BLACK" strokeType="INSIDE" width="125.0">
+                     <StackPane.margin>
+                        <Insets bottom="-200.0" right="-660.0" />
+                     </StackPane.margin>
+                  </Rectangle>
+                  <Label fx:id="deck10" text="Deck 10">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="-200.0" right="-660.0" />
+                     </StackPane.margin>
+                  </Label>
                </children>
             </StackPane>
          </children>

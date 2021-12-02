@@ -20,6 +20,7 @@ public class MakeCardController {
 	@FXML private TextArea backEntry;
 	@FXML private TextField ratingEntry;
 	@FXML private Button close;
+	static String title;
 	
 	private String frontSide = "";
 	private String backSide = "";
@@ -46,10 +47,10 @@ public class MakeCardController {
 		backEntry();
 		//ratingEntry();
 		
-		File path = new File("src/model/decks/DefaultDeck.json");
-		
+		File path = new File("src/model/decks/"+title);
 		
 		model.JSONWriter.createCard(path, frontSide, backSide, rating, repetition, interval, nextReviewDate, exactReviewMoment); 
+
 		
 		// Close pop-up window 
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -62,6 +63,47 @@ public class MakeCardController {
 		final Stage stage = (Stage) source.getScene().getWindow();
 		stage.close();
 	}
+	
+	public void changer1() {
+		title = "DefaultDeck.json";
+	}
+	
+	public void changer2() {
+		title = "CustomDeck2.json";
+	}
+	
+	public void changer3() {
+		title = "CustomDeck3.json";
+	}
+	
+	public void changer4() {
+		title = "CustomDeck4.json";
+	}
+	
+	public void changer5() {
+		title = "CustomDeck5.json";
+	}
+	
+	public void changer6() {
+		title = "CustomDeck6.json";
+	}
+	
+	public void changer7() {
+		title = "CustomDeck7.json";
+	}
+	
+	public void changer8() {
+		title = "CustomDeck8.json";
+	}
+	
+	public void changer9() {
+		title = "CustomDeck9.json";
+	}
+	
+	public void changer10() {
+		title = "CustomDeck10.json";
+	}
+
 	
 }
 
