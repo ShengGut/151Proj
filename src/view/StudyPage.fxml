@@ -141,38 +141,38 @@
                   <Insets left="150.0" />
                </StackPane.margin>
             </ToggleButton>
-            <ToggleButton accessibleRole="BUTTON" mnemonicParsing="false" onAction="#updateCardStats" prefHeight="31.0" prefWidth="74.0" text="Easy" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="easyBtn" mnemonicParsing="false" onAction="#updateCardStats" prefHeight="31.0" prefWidth="74.0" text="Easy">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
                <StackPane.margin>
                   <Insets right="230.0" top="-100.0" />
                </StackPane.margin>
-            </ToggleButton>
-            <ToggleButton accessibleRole="BUTTON" mnemonicParsing="false" onAction="#updateCardStats" prefHeight="31.0" prefWidth="74.0" text="Normal" textAlignment="CENTER" wrapText="true">
+            </Button>
+            <Button fx:id="normalBtn" mnemonicParsing="false" onAction="#updateCardStats" prefHeight="31.0" prefWidth="74.0" text="Normal">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
                <StackPane.margin>
                   <Insets right="70.0" top="-100.0" />
                </StackPane.margin>
-            </ToggleButton>
-            <ToggleButton accessibleRole="BUTTON" mnemonicParsing="false" onAction="#updateCardStats" prefHeight="31.0" prefWidth="74.0" text="Hard" textAlignment="CENTER" wrapText="true">
+            </Button>
+            <Button fx:id="hardBtn" mnemonicParsing="false" onAction="#updateCardStats" prefHeight="31.0" prefWidth="74.0" text="Hard">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
                <StackPane.margin>
-                  <Insets right="-90.0" top="-100.0" />
+                  <Insets left="90.0" top="-100.0" />
                </StackPane.margin>
-            </ToggleButton>
-            <ToggleButton accessibleRole="BUTTON" mnemonicParsing="false" onAction="#updateCardStats" prefHeight="31.0" prefWidth="74.0" text="Difficult" textAlignment="CENTER" wrapText="true">
+            </Button>
+            <Button fx:id="difficultBtn" mnemonicParsing="false" onAction="#updateCardStats" prefHeight="31.0" prefWidth="74.0" text="Difficult">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
                <StackPane.margin>
                   <Insets right="-250.0" top="-100.0" />
                </StackPane.margin>
-            </ToggleButton>
+            </Button>
          </children>
       </StackPane>
    </children>

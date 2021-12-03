@@ -70,6 +70,7 @@ public class HomePageController extends JSONReader {
 	// This is the controller to switch to the StudyPage
 	public void switchToReviewPage(ActionEvent event) throws IOException {
 		controller.StudyPageController.switchxTo1();
+		controller.StudyPageController.hideRatings(event);
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/StudyPage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);

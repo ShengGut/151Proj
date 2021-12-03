@@ -11,8 +11,8 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -36,21 +36,6 @@ public class StudyPageController extends SceneController {
 	// added from StudyController
 	private static int rating;
 
-	public void getRatingEntry(ActionEvent event) {
-		Object node = event.getSource();
-		ToggleButton b = (ToggleButton) node;
-		System.out.println(b.getText());
-		if (b.getText().equals("Easy"))
-			rating = 1;
-		else if (b.getText().equals("Normal"))
-			rating = 2;
-		else if (b.getText().equals("Hard"))
-			rating = 3;
-		else if (b.getText().equals("Difficult"))
-			rating = 4;
-		System.out.println("rating: " + rating);
-	}
-
 	// This is for the toggle button that displays the cards side-by-side
 	@FXML
 	Rectangle firstSquare, secondSquare, blocker;
@@ -68,7 +53,7 @@ public class StudyPageController extends SceneController {
 		totalCards = (Cards.size());
 		return totalCards;
 	}
-
+	
 	// Initialize the text to show the total amount of Cards in the deck
 	public void initialize() {
 		Platform.runLater(new Runnable() {
@@ -111,15 +96,36 @@ public class StudyPageController extends SceneController {
 			}
 		});
 	}
+	
+	public void getRatingEntry(ActionEvent event) throws FileNotFoundException, IOException, ParseException {
+		Object node = event.getSource();
+		Button b = (Button) node;
+		System.out.println(b.getText());
+		if (b.getText().equals("Easy"))
+			rating = 1;
+		else if (b.getText().equals("Normal"))
+			rating = 2;
+		else if (b.getText().equals("Hard"))
+			rating = 3;
+		else if (b.getText().equals("Difficult"))
+			rating = 4;
+		System.out.println("rating: " + rating);
+	}
 
 	// call studyCalculation in CardReviewer on action when rating is selected
 	public void updateCardStats(ActionEvent event) throws IOException, ParseException {
+		if (setNumberOfCards(new File("src/model/decks/" + title)) > 0) {
 		getRatingEntry(event);
 		File path = new File("src/model/decks/" + title);
 		Card card = model.JSONReader.generateCard(path, cardID - 1);
 		CardReviewer.studyCalculation(card, rating);
+		}
 	}
 
+	public static void hideRatings() throws IOException {
+		@FXML Label easyBtn, hardBtn, normalBtn, difficultBtn;
+	}
+	
 	public void ToggleBtn(ActionEvent event) throws IOException {
 		if (newX == 0) {
 			newX = -200;
@@ -247,6 +253,14 @@ public class StudyPageController extends SceneController {
 			} else if (startingCard == 1 && setNumberOfCards(new File("src/model/decks/" + title)) != 0) {
 				ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(deckPath);
 				cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/" + title)));
+				frontSide.setText(Cards.get(frontside).getFrontSide());
+				backSide.setText(Cards.get(backside).getBackSide());
+				// Get the next cardID
+				cardID = Cards.get(i).getID();
+				System.out.println(cardID);
+			} else if (startingCard == 1 && setNumberOfCards2(new File("src/model/decks/" + title)) != 0) {
+				ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
+				cardPosition.setText(startingCard + "/" + setNumberOfCards2(new File("src/model/decks/" + title)));
 				frontSide.setText(Cards.get(frontside).getFrontSide());
 				backSide.setText(Cards.get(backside).getBackSide());
 				// Get the next cardID
