@@ -188,7 +188,7 @@ public class StudyPageController extends SceneController {
 				frontside++;
 				backside++;
 				startingCard++;
-				cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/" + title)));
+				cardPosition.setText(startingCard + "/" + setNumberOfCards2(new File("src/model/decks/" + title)));
 				frontSide.setText(Cards.get(frontside).getFrontSide());
 				backSide.setText(Cards.get(backside).getBackSide());
 			}
@@ -222,7 +222,7 @@ public class StudyPageController extends SceneController {
 				frontside--;
 				backside--;
 				startingCard--;
-				cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/" + title)));
+				cardPosition.setText(startingCard + "/" + setNumberOfCards2(new File("src/model/decks/" + title)));
 				frontSide.setText(Cards.get(frontside).getFrontSide());
 				backSide.setText(Cards.get(backside).getBackSide());
 			}
