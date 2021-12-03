@@ -31,7 +31,9 @@ public class StudyPageController extends SceneController {
 	static int x = 0;
 
 	// Test
-	static String title = "DefaultDeck.json";
+	static String title = "DefaultDeck";
+	//static File path = model.JSONReader.getDeckFileFromTitle(title);
+	static File deckPath = new File("src/model/decks/" + title + ".json");
 
 	// added from StudyController
 	private static int rating;
@@ -42,13 +44,13 @@ public class StudyPageController extends SceneController {
 	@FXML
 	Polygon leftTriangle, rightTriangle;
 
-	public int setNumberOfCards(File filePath) throws FileNotFoundException, IOException, ParseException {
-		ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(filePath);
+	public int setNumberOfCards() throws FileNotFoundException, IOException, ParseException {
+		ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(title);
 		totalCards = (Cards.size());
 		return totalCards;
 	}
 	
-	public int setNumberOfCards2(File filePath) throws FileNotFoundException, IOException, ParseException {
+	public int setNumberOfCards2() throws FileNotFoundException, IOException, ParseException {
 		ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
 		totalCards = (Cards.size());
 		return totalCards;
@@ -61,26 +63,25 @@ public class StudyPageController extends SceneController {
 			public void run() {
 				try {
 					deckTitle.setText(title.substring(0, title.length() - 5));
-					if (setNumberOfCards(new File("src/model/decks/" + title)) == 0) {
+					if (setNumberOfCards() == 0) {
 						deckTitle.setText(title.substring(0, title.length() - 5));
 						System.out.println(title);
 						startingCard = 0;
-						cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/" + title)));
+						cardPosition.setText(startingCard + "/" + setNumberOfCards());
 						frontSide.setText("Hello, please add a card");
 						backSide.setText("Professor Yazdankhah is the best");
 					} else {
 						if (x == 0) {
-							cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/" + title)));
-							File deckPath = new File("src/model/decks/" + title);
-							model.JSONReader.getArrayOfDeck(deckPath);
-							ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(deckPath);
+							cardPosition.setText(startingCard + "/" + setNumberOfCards());
+							model.JSONReader.getArrayOfDeck(title);
+							ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(title);
 							// set the frontSide and backSide text on the first card to display
 							frontSide.setText(Cards.get(frontside).getFrontSide());
 							backSide.setText(Cards.get(backside).getBackSide());
 							// Get initial Card ID
 							cardID = Cards.get(i).getID();
 						} else {
-							cardPosition.setText(startingCard + "/" + setNumberOfCards2(new File("src/model/decks/" + title)));
+							cardPosition.setText(startingCard + "/" + setNumberOfCards2());
 							ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
 							// set the frontSide and backSide text on the first card to display
 							frontSide.setText(Cards.get(frontside).getFrontSide());
@@ -114,16 +115,11 @@ public class StudyPageController extends SceneController {
 
 	// call studyCalculation in CardReviewer on action when rating is selected
 	public void updateCardStats(ActionEvent event) throws IOException, ParseException {
-		if (setNumberOfCards(new File("src/model/decks/" + title)) > 0) {
+		if (setNumberOfCards() > 0) {
 		getRatingEntry(event);
-		File path = new File("src/model/decks/" + title);
-		Card card = model.JSONReader.generateCard(path, cardID - 1);
+		Card card = model.JSONReader.generateCard(title, cardID - 1);
 		CardReviewer.studyCalculation(card, rating);
 		}
-	}
-
-	public static void hideRatings() throws IOException {
-		@FXML Label easyBtn, hardBtn, normalBtn, difficultBtn;
 	}
 	
 	public void ToggleBtn(ActionEvent event) throws IOException {
@@ -169,12 +165,11 @@ public class StudyPageController extends SceneController {
 	}
 
 	public void nextArrow(MouseEvent event) throws IOException, ParseException {
-		if (startingCard != setNumberOfCards(new File("src/model/decks/" + title))) {
-			System.out.println(setNumberOfCards(new File("src/model/decks/" + title)));
+		if (startingCard != setNumberOfCards()) {
+			System.out.println(setNumberOfCards());
 			System.out.println(startingCard);
 			if (x == 0) {
-				File deckPath = new File("src/model/decks/" + title);
-				ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(deckPath);
+				ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(title);
 				// Go through Cards to get their ID for removeCard
 				i++;
 				// Make cardID equal to the cardID of the index of i
@@ -182,10 +177,10 @@ public class StudyPageController extends SceneController {
 				frontside++;
 				backside++;
 				startingCard++;
-				cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/" + title)));
+				cardPosition.setText(startingCard + "/" + setNumberOfCards());
 				frontSide.setText(Cards.get(frontside).getFrontSide());
 				backSide.setText(Cards.get(backside).getBackSide());
-			} else if ((x == 1) && (startingCard != setNumberOfCards2(new File("src/model/decks/" + title)))) {
+			} else if ((x == 1) && (startingCard != setNumberOfCards2())) {
 				ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
 				// Go through Cards to get their ID for removeCard
 				i++;
@@ -194,7 +189,7 @@ public class StudyPageController extends SceneController {
 				frontside++;
 				backside++;
 				startingCard++;
-				cardPosition.setText(startingCard + "/" + setNumberOfCards2(new File("src/model/decks/" + title)));
+				cardPosition.setText(startingCard + "/" + setNumberOfCards2());
 				frontSide.setText(Cards.get(frontside).getFrontSide());
 				backSide.setText(Cards.get(backside).getBackSide());
 			}
@@ -207,8 +202,7 @@ public class StudyPageController extends SceneController {
 	public void backArrow(MouseEvent event) throws IOException, ParseException {
 		if (startingCard != 1 && startingCard != 0) {
 			if (x == 0) {
-				File deckPath = new File("src/model/decks/" + title);
-				ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(deckPath);
+				ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(title);
 				// Get the previous index
 				i--;
 				// Make cardID equal to the cardID of the index of i
@@ -216,7 +210,7 @@ public class StudyPageController extends SceneController {
 				frontside--;
 				backside--;
 				startingCard--;
-				cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/" + title)));
+				cardPosition.setText(startingCard + "/" + setNumberOfCards());
 				frontSide.setText(Cards.get(frontside).getFrontSide());
 				backSide.setText(Cards.get(backside).getBackSide());
 			} else {
@@ -228,7 +222,7 @@ public class StudyPageController extends SceneController {
 				frontside--;
 				backside--;
 				startingCard--;
-				cardPosition.setText(startingCard + "/" + setNumberOfCards2(new File("src/model/decks/" + title)));
+				cardPosition.setText(startingCard + "/" + setNumberOfCards2());
 				frontSide.setText(Cards.get(frontside).getFrontSide());
 				backSide.setText(Cards.get(backside).getBackSide());
 			}
@@ -242,25 +236,24 @@ public class StudyPageController extends SceneController {
 	public void deleteCard(ActionEvent event) throws FileNotFoundException, IOException, ParseException {
 		// The deleteCard function only works if there is a card in the deck
 		if (startingCard != 0) {
-			File deckPath = new File("src/model/decks/" + title);
-			model.JSONWriter.removeCard(deckPath, cardID);
+			model.JSONWriter.removeCard(title, cardID);
 			// If the user tries to delete a card starting from 2+, after removing the card
 			// it would transition to the previous card
 			if (startingCard != 1) {
 				backArrow(null);
 				// If the user tries to remove the first card, then it will transition to the
 				// second card
-			} else if (startingCard == 1 && setNumberOfCards(new File("src/model/decks/" + title)) != 0) {
-				ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(deckPath);
-				cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/" + title)));
+			} else if (startingCard == 1 && setNumberOfCards() != 0) {
+				ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(title);
+				cardPosition.setText(startingCard + "/" + setNumberOfCards());
 				frontSide.setText(Cards.get(frontside).getFrontSide());
 				backSide.setText(Cards.get(backside).getBackSide());
 				// Get the next cardID
 				cardID = Cards.get(i).getID();
 				System.out.println(cardID);
-			} else if (startingCard == 1 && setNumberOfCards2(new File("src/model/decks/" + title)) != 0) {
+			} else if (startingCard == 1 && setNumberOfCards2() != 0) {
 				ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
-				cardPosition.setText(startingCard + "/" + setNumberOfCards2(new File("src/model/decks/" + title)));
+				cardPosition.setText(startingCard + "/" + setNumberOfCards2());
 				frontSide.setText(Cards.get(frontside).getFrontSide());
 				backSide.setText(Cards.get(backside).getBackSide());
 				// Get the next cardID
@@ -269,7 +262,7 @@ public class StudyPageController extends SceneController {
 				// If there are no more card, then set startingCard to display 0/0
 			} else {
 				startingCard = 0;
-				cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/" + title)));
+				cardPosition.setText(startingCard + "/" + setNumberOfCards());
 				frontSide.setText("");
 				backSide.setText("");
 			}
@@ -285,43 +278,43 @@ public class StudyPageController extends SceneController {
 	}
 
 	public void changer1() {
-		title = "DefaultDeck.json";
+		title = "DefaultDeck";
 	}
 
 	public void changer2() {
-		title = "CustomDeck2.json";
+		title = "CustomDeck2";
 	}
 
 	public void changer3() {
-		title = "CustomDeck3.json";
+		title = "CustomDeck3";
 	}
 
 	public void changer4() {
-		title = "CustomDeck4.json";
+		title = "CustomDeck4";
 	}
 
 	public void changer5() {
-		title = "CustomDeck5.json";
+		title = "CustomDeck5";
 	}
 
 	public void changer6() {
-		title = "CustomDeck6.json";
+		title = "CustomDeck6";
 	}
 
 	public void changer7() {
-		title = "CustomDeck7.json";
+		title = "CustomDeck7";
 	}
 
 	public void changer8() {
-		title = "CustomDeck8.json";
+		title = "CustomDeck8";
 	}
 
 	public void changer9() {
-		title = "CustomDeck9.json";
+		title = "CustomDeck9";
 	}
 
 	public void changer10() {
-		title = "CustomDeck10.json";
+		title = "CustomDeck10";
 	}
 
 }

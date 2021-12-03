@@ -31,21 +31,19 @@ public class CardReviewer {
 			interval = 6;
 		else
 			interval = (int) Math.round(interval * difficulty);
-		
-		card.setExactReviewMoment();
-		
+
 		System.out.println("StudyCalculation rating: " + rating);
 		System.out.println("StudyCalculation repetition: " + repetition);
 		System.out.println("StudyCalculation interval: " + interval);
 		int msInADay = 60 * 60 * 24 * 1000;
 		long present = System.currentTimeMillis();
 		long nextReviewDate =  msInADay + present * interval;
-		File path = new File("src/model/decks/CustomDeck2.json"); //Change this so that it takes in all of the files
+		String deckTitle = "DefaultDeck"; //Change this so that it takes in all of the files
 		int cardID = card.getID();
 		
 		
 		try {
-		model.JSONWriter.updateCard(path, cardID, "nextReviewDate", nextReviewDate, "rating", rating, "repetition", repetition, "interval", interval);
+		model.JSONWriter.updateCard(deckTitle, cardID, "nextReviewDate", nextReviewDate, "rating", rating, "repetition", repetition, "interval", interval);
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +60,8 @@ public class CardReviewer {
 	
 	public static ArrayList<Card> returnShowingCards(String deckTitle) 
 			throws FileNotFoundException, IOException, ParseException {
-		
-		File deckFile = model.FileController.getDeckFileFromTitle(deckTitle);
-		ArrayList<Card> cards = model.JSONReader.getArrayOfDeck(deckFile);
+
+		ArrayList<Card> cards = model.JSONReader.getArrayOfDeck(deckTitle);
 		ArrayList<Card> shownCards = new ArrayList<>();
 		
 		for(Card c : cards) {

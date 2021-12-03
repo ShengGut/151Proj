@@ -28,7 +28,7 @@ public class HomePageController extends JSONReader {
 	@FXML Label totalCardsLbl, newCardLbl;
 	int newCardIni, newCardAft, totalCards;
 	@FXML Label deckTitle;
-	static String title = "DefaultDeck.json";
+	static String title = "DefaultDeck";
 
 	// This is the controller to switch to the main HomePage
 	public void switchToHomePage(ActionEvent event) throws IOException, ParseException, FileNotFoundException {
@@ -70,7 +70,6 @@ public class HomePageController extends JSONReader {
 	// This is the controller to switch to the StudyPage
 	public void switchToReviewPage(ActionEvent event) throws IOException {
 		controller.StudyPageController.switchxTo1();
-		controller.StudyPageController.hideRatings(event);
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/StudyPage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -90,8 +89,8 @@ public class HomePageController extends JSONReader {
 		;
 	}
 
-	public int setNumberOfCards(File filePath) throws FileNotFoundException, IOException, ParseException {
-		ArrayList<Card> cards = model.JSONReader.getArrayOfDeck(filePath);
+	public int setNumberOfCards() throws FileNotFoundException, IOException, ParseException {
+		ArrayList<Card> cards = model.JSONReader.getArrayOfDeck(title);
 		newCardIni = totalCards;
 		totalCards = (cards.size());
 		totalCardsLbl.setText("" + totalCards);
@@ -103,8 +102,8 @@ public class HomePageController extends JSONReader {
 			@Override
 			public void run() {
 				try {
-					deckTitle.setText(title.substring(0, title.length() - 5));
-					setNumberOfCards(new File("src/model/decks/"+title));
+					deckTitle.setText(title);
+					setNumberOfCards();
 				} catch (IOException | ParseException e) {
 					e.printStackTrace();
 				}
@@ -121,7 +120,7 @@ public class HomePageController extends JSONReader {
 		scene = new Scene(root);
 		popup.setScene(scene);
 		popup.showAndWait();
-		setNumberOfCards(new File("src/model/decks/" + title));
+		setNumberOfCards();
 		if (newCardIni + 1 == totalCards) {
 			newCardAft++;
 			newCardLbl.setText("" + newCardAft);
@@ -138,43 +137,43 @@ public class HomePageController extends JSONReader {
 	 */
 	
 	public void changer1() throws IOException {
-		title = "DefaultDeck.json";
+		title = "DefaultDeck";
 	}
 
 	public void changer2() {
-		title = "CustomDeck2.json";
+		title = "CustomDeck2";
 	}
 	
 	public void changer3() {
-		title = "CustomDeck3.json";
+		title = "CustomDeck3";
 	}
 	
 	public void changer4() {
-		title = "CustomDeck4.json";
+		title = "CustomDeck4";
 	}
 	
 	public void changer5() {
-		title = "CustomDeck5.json";
+		title = "CustomDeck5";
 	}
 	
 	public void changer6() {
-		title = "CustomDeck6.json";
+		title = "CustomDeck6";
 	}
 	
 	public void changer7() {
-		title = "CustomDeck7.json";
+		title = "CustomDeck7";
 	}
 	
 	public void changer8() {
-		title = "CustomDeck8.json";
+		title = "CustomDeck8";
 	}
 	
 	public void changer9() {
-		title = "CustomDeck9.json";
+		title = "CustomDeck9";
 	}
 	
 	public void changer10() {
-		title = "CustomDeck10.json";
+		title = "CustomDeck10";
 	}
 
 }

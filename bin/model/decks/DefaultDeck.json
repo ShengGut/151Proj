@@ -1,1 +1,15 @@
-{"deck":[]}
+{
+	"deck": [
+		{
+			"nextReviewDate": 0,
+			"backSide": "e",
+			"difficultyFactor": 2.5,
+			"cardID": 0,
+			"rating": 0,
+			"interval": 1,
+			"frontSide": "e",
+			"repetition": 0
+		}
+	],
+	"deckTitle": "DefaultDeck"
+}

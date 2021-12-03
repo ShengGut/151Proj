@@ -20,7 +20,7 @@ public class MakeCardController {
 	@FXML private TextArea backEntry;
 	@FXML private TextField ratingEntry;
 	@FXML private Button close;
-	static String title = "DefaultDeck.json";
+	static String title = "DefaultDeck";
 	
 	private String frontSide = "";
 	private String backSide = "";
@@ -47,9 +47,7 @@ public class MakeCardController {
 		backEntry();
 		//ratingEntry();
 		
-		File path = new File("src/model/decks/"+title);
-		
-		model.JSONWriter.createCard(path, frontSide, backSide, rating, repetition, interval, nextReviewDate, exactReviewMoment); 
+		model.JSONWriter.createCard(title, frontSide, backSide, rating, repetition, interval, nextReviewDate, exactReviewMoment); 
 
 		
 		// Close pop-up window 
@@ -65,43 +63,43 @@ public class MakeCardController {
 	}
 	
 	public void changer1() {
-		title = "DefaultDeck.json";
+		title = "DefaultDeck";
 	}
 	
 	public void changer2() {
-		title = "CustomDeck2.json";
+		title = "CustomDeck2";
 	}
 	
 	public void changer3() {
-		title = "CustomDeck3.json";
+		title = "CustomDeck3";
 	}
 	
 	public void changer4() {
-		title = "CustomDeck4.json";
+		title = "CustomDeck4";
 	}
 	
 	public void changer5() {
-		title = "CustomDeck5.json";
+		title = "CustomDeck5";
 	}
 	
 	public void changer6() {
-		title = "CustomDeck6.json";
+		title = "CustomDeck6";
 	}
 	
 	public void changer7() {
-		title = "CustomDeck7.json";
+		title = "CustomDeck7";
 	}
 	
 	public void changer8() {
-		title = "CustomDeck8.json";
+		title = "CustomDeck8";
 	}
 	
 	public void changer9() {
-		title = "CustomDeck9.json";
+		title = "CustomDeck9";
 	}
 	
 	public void changer10() {
-		title = "CustomDeck10.json";
+		title = "CustomDeck10";
 	}
 
 	

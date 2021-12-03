@@ -20,8 +20,8 @@ public class StudyController {
 
 	// call studyCalculation in CardReviewer on action when rating is selected
 	public static void updateCardStats(ActionEvent event) throws IOException, ParseException {
-		File path = new File("src/model/DefaultDeck.json");
-		Card card = model.JSONReader.generateCard(path, 0);
+		String deckTitle = "DefaultDeck";
+		Card card = model.JSONReader.generateCard(deckTitle, 0);
 		CardReviewer.studyCalculation(card, rating);
 	}
 

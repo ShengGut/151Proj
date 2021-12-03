@@ -10,9 +10,8 @@ public class Card {
 	private int interval = 1;
 	private double difficultyFactor;
 	private long nextReviewDate;
-	private long exactReviewMoment;
 	
-	public Card (int cardID, String frontSide, String backSide, int rating, int repetition, int interval, long nextReviewDate, long exactReviewMoment) {
+	public Card (int cardID, String frontSide, String backSide, int rating, int repetition, int interval, long nextReviewDate) {
         this.cardID = cardID;
         this.frontSide = frontSide;
         this.backSide = backSide;
@@ -21,16 +20,7 @@ public class Card {
         this.interval = interval;
         this.difficultyFactor = 2.5;
         this.nextReviewDate = nextReviewDate;
-        this.exactReviewMoment = exactReviewMoment;
     }
-	
-	public long setExactReviewMoment() {
-        return exactReviewMoment = System.currentTimeMillis();
-    }
-	
-	public long getExactReviewMoment() {
-		return exactReviewMoment;
-	}
 	
 	public String getFrontSide() {
 		return frontSide;

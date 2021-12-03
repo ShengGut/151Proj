@@ -24,8 +24,8 @@ public class CardDeleterController {
 	// Call JSONWriter method in another class to delete the card
 	public void deleteCard(ActionEvent event) throws FileNotFoundException, IOException, ParseException {
 		
-		File path = new File("src/model/DefaultDeck.json");
-		model.JSONWriter.removeCard(path, cardID);
+		String title = "DefaultDeck";
+		model.JSONWriter.removeCard(title, cardID);
 		
 		
 		// Close pop-up window 
