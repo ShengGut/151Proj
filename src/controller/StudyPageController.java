@@ -27,6 +27,7 @@ public class StudyPageController extends SceneController {
 	int totalCards, frontside, backside, toggle = 0;
 	@FXML
 	Label frontSide, backSide, cardPosition;
+	@FXML Label deckTitle;
 	static int x = 0;
 
 	// Test
@@ -61,6 +62,12 @@ public class StudyPageController extends SceneController {
 		totalCards = (Cards.size());
 		return totalCards;
 	}
+	
+	public int setNumberOfCards2(File filePath) throws FileNotFoundException, IOException, ParseException {
+		ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
+		totalCards = (Cards.size());
+		return totalCards;
+	}
 
 	// Initialize the text to show the total amount of Cards in the deck
 	public void initialize() {
@@ -68,16 +75,17 @@ public class StudyPageController extends SceneController {
 			@Override
 			public void run() {
 				try {
+					deckTitle.setText(title.substring(0, title.length() - 5));
 					if (setNumberOfCards(new File("src/model/decks/" + title)) == 0) {
+						deckTitle.setText(title.substring(0, title.length() - 5));
 						System.out.println(title);
 						startingCard = 0;
 						cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/" + title)));
 						frontSide.setText("Hello, please add a card");
 						backSide.setText("Professor Yazdankhah is the best");
 					} else {
-						cardPosition
-								.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/" + title)));
 						if (x == 0) {
+							cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/" + title)));
 							File deckPath = new File("src/model/decks/" + title);
 							model.JSONReader.getArrayOfDeck(deckPath);
 							ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(deckPath);
@@ -87,6 +95,7 @@ public class StudyPageController extends SceneController {
 							// Get initial Card ID
 							cardID = Cards.get(i).getID();
 						} else {
+							cardPosition.setText(startingCard + "/" + setNumberOfCards2(new File("src/model/decks/" + title)));
 							ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
 							// set the frontSide and backSide text on the first card to display
 							frontSide.setText(Cards.get(frontside).getFrontSide());
@@ -170,7 +179,7 @@ public class StudyPageController extends SceneController {
 				cardPosition.setText(startingCard + "/" + setNumberOfCards(new File("src/model/decks/" + title)));
 				frontSide.setText(Cards.get(frontside).getFrontSide());
 				backSide.setText(Cards.get(backside).getBackSide());
-			} else {
+			} else if ((x == 1) && (startingCard != setNumberOfCards2(new File("src/model/decks/" + title)))) {
 				ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
 				// Go through Cards to get their ID for removeCard
 				i++;
@@ -253,7 +262,11 @@ public class StudyPageController extends SceneController {
 		}
 	}
 
-	public static void switchX() {
+	public static void switchxTo0() {
+		x = 0;
+	}
+	
+	public static void switchxTo1() {
 		x = 1;
 	}
 

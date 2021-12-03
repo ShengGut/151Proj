@@ -51,11 +51,11 @@
                 <MenuItem mnemonicParsing="false" text="Default Deck" />
               </items>
             </MenuButton>
-            <Text fx:id="" strokeType="OUTSIDE" strokeWidth="0.0" text="Default Deck">
+            <Label fx:id="deckTitle" text="Default Deck">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
-            </Text>
+            </Label>
             <Button mnemonicParsing="false" onAction="#deckChooserBtn" text="⚙" StackPane.alignment="CENTER_RIGHT">
                <font>
                   <Font size="14.0" />
