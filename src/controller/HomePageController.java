@@ -65,6 +65,16 @@ public class HomePageController extends JSONReader {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	// This is the controller to switch to the StudyPage
+	public void switchToReviewPage(ActionEvent event) throws IOException {
+		controller.StudyPageController.switchX();
+		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/StudyPage.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
 
 	// This is the controller for the deckChooser button
 	public void deckChooserBtn(ActionEvent event) throws IOException {
@@ -91,7 +101,7 @@ public class HomePageController extends JSONReader {
 			@Override
 			public void run() {
 				try {
-					System.out.println(title);
+					deckTitle.setText(title.substring(0, title.length() - 5));
 					setNumberOfCards(new File("src/model/decks/"+title));
 				} catch (IOException | ParseException e) {
 					e.printStackTrace();
@@ -124,8 +134,8 @@ public class HomePageController extends JSONReader {
 	 * 
 	 * 
 	 */
-
-	public void changer1() {
+	
+	public void changer1() throws IOException {
 		title = "DefaultDeck.json";
 	}
 

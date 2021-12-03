@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class FileController {
     
     private static ArrayList<File> decks;
-    private static String directoryPath = "src/model";
+    private static String directoryPath = "src/model/decks";
     private static File binder = new File(directoryPath);
 
     public static int getDecksLength() {
@@ -30,7 +30,7 @@ public class FileController {
     public static File getDeckFileFromTitle(String title) {
         
         //check if deck exists first.  
-        return new File(directoryPath + "/" + title + ".json");
+        return new File(directoryPath + "/" + title);
     }
     
 }

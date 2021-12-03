@@ -3,8 +3,6 @@ package controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Date;
-import java.time.Duration;
 import java.util.ArrayList;
 
 import org.json.simple.parser.ParseException;
@@ -42,7 +40,7 @@ public class CardReviewer {
 		int msInADay = 60 * 60 * 24 * 1000;
 		long present = System.currentTimeMillis();
 		long nextReviewDate =  msInADay + present * interval;
-		File path = new File("src/model/decks/DefaultDeck.json");
+		File path = new File("src/model/decks/CustomDeck2.json"); //Change this so that it takes in all of the files
 		int cardID = card.getID();
 		
 		
@@ -56,7 +54,7 @@ public class CardReviewer {
 	
 	public static boolean isCardHidden(Card card) {
 		
-		if(card.getNextReviewDate() - System.currentTimeMillis() >= card.getExactReviewMoment())
+		if(System.currentTimeMillis() >= card.getNextReviewDate())
 			return false;
 		return true;
 		

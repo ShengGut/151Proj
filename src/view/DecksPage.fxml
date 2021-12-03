@@ -52,7 +52,7 @@
                         <Insets bottom="200.0" right="660.0" />
                      </StackPane.margin>
                   </Rectangle>
-                  <Label fx:id="deck1" text="Default&#10;Deck" textAlignment="CENTER">
+                  <Label fx:id="deck1" onMouseClicked="#switchToStudyPage1" text="Default&#10;Deck" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -65,7 +65,7 @@
                         <Insets bottom="200.0" right="330.0" />
                      </StackPane.margin>
                   </Rectangle>
-                  <Label fx:id="deck2" text="CustomDeck2">
+                  <Label fx:id="deck2" onMouseClicked="#switchToStudyPage2" text="CustomDeck2">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -78,7 +78,7 @@
                         <Insets bottom="200.0" />
                      </StackPane.margin>
                   </Rectangle>
-                  <Label fx:id="deck3" text="Deck 3">
+                  <Label fx:id="deck3" onMouseClicked="#switchToStudyPage3" text="Deck 3">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -91,7 +91,7 @@
                         <Insets bottom="200.0" right="-330.0" />
                      </StackPane.margin>
                   </Rectangle>
-                  <Label fx:id="deck4" text="Deck 4">
+                  <Label fx:id="deck4" onMouseClicked="#switchToStudyPage4" text="Deck 4">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -104,7 +104,7 @@
                         <Insets bottom="200.0" right="-660.0" />
                      </StackPane.margin>
                   </Rectangle>
-                  <Label fx:id="deck5" text="Deck 5">
+                  <Label fx:id="deck5" onMouseClicked="#switchToStudyPage5" text="Deck 5">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -117,7 +117,7 @@
                         <Insets bottom="-200.0" right="660.0" />
                      </StackPane.margin>
                   </Rectangle>
-                  <Label fx:id="deck6" text="Deck 6">
+                  <Label fx:id="deck6" onMouseClicked="#switchToStudyPage6" text="Deck 6">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -130,7 +130,7 @@
                         <Insets bottom="-200.0" right="330.0" />
                      </StackPane.margin>
                   </Rectangle>
-                  <Label fx:id="deck7" text="Deck 7">
+                  <Label fx:id="deck7" onMouseClicked="#switchToStudyPage7" text="Deck 7">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -143,7 +143,7 @@
                         <Insets bottom="-200.0" />
                      </StackPane.margin>
                   </Rectangle>
-                  <Label fx:id="deck8" text="Deck 8">
+                  <Label fx:id="deck8" onMouseClicked="#switchToStudyPage8" text="Deck 8">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -156,7 +156,7 @@
                         <Insets bottom="-200.0" right="-330.0" />
                      </StackPane.margin>
                   </Rectangle>
-                  <Label fx:id="deck9" text="Deck 9">
+                  <Label fx:id="deck9" onMouseClicked="#switchToStudyPage9" text="Deck 9">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -169,7 +169,7 @@
                         <Insets bottom="-200.0" right="-660.0" />
                      </StackPane.margin>
                   </Rectangle>
-                  <Label fx:id="deck10" text="Deck 10">
+                  <Label fx:id="deck10" onMouseClicked="#switchToStudyPage10" text="Deck 10">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

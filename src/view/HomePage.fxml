@@ -45,13 +45,22 @@
             <MenuButton fx:id="menuBtn" mnemonicParsing="false" prefHeight="30.0" style="-fx-border-stroke: s;" text="Decks" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
                <items>
                   <MenuItem mnemonicParsing="false" text="Default Deck" />
+                  <MenuItem mnemonicParsing="false" text="Custom Deck 2" />
+                  <MenuItem mnemonicParsing="false" text="Custom Deck 3" />
+                  <MenuItem mnemonicParsing="false" text="Custom Deck 4" />
+                  <MenuItem mnemonicParsing="false" text="Custom Deck 5" />
+                  <MenuItem mnemonicParsing="false" text="Custom Deck 6" />
+                  <MenuItem mnemonicParsing="false" text="Custom Deck 7" />
+                  <MenuItem mnemonicParsing="false" text="Custom Deck 8" />
+                  <MenuItem mnemonicParsing="false" text="Custom Deck 9" />
+                  <MenuItem mnemonicParsing="false" text="Custom Deck 10" />
                </items>
             </MenuButton>
-            <Text fx:id="deckTitleID" strokeType="OUTSIDE" strokeWidth="0.0" text="Default Deck">
+            <Label fx:id="deckTitle" text="DefaultDeck">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
-            </Text>
+            </Label>
             <Button mnemonicParsing="false" onAction="#deckChooserBtn" text="⚙" StackPane.alignment="CENTER_RIGHT">
                <font>
                   <Font size="14.0" />
@@ -90,11 +99,19 @@
                </StackPane.margin></Button>
             <Button mnemonicParsing="false" onAction="#switchToStudyPage" prefWidth="120.0" text="Study" StackPane.alignment="CENTER">
                <StackPane.margin>
-                  <Insets bottom="-260.0" />
+                  <Insets bottom="-260.0" right="150.0" />
                </StackPane.margin>
                <font>
                   <Font size="24.0" />
                </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#switchToReviewPage" prefWidth="120.0" text="Review">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets bottom="-260.0" right="-150.0" />
+               </StackPane.margin>
             </Button>
          </children>
       </StackPane>
