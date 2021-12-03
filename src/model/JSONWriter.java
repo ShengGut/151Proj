@@ -98,13 +98,14 @@ public class JSONWriter extends JSONReader {
 		
 		if(frontSide != null && backSide != null && changer != null) {
 			//Sets up the cardID.  
-			int cardID = 0;
+			int cardID = 1;
+
+			//Calls generateCardID() to make a new cardID int based on the latest cardID in the array.  
+			cardID = generateCardID(title);
+			
 			//Creates a Card instance and adds it to the List.  
 			Card jack = new Card(cardID, frontSide, backSide, rating, repetition, interval, nextReviewDate);
 			cards.add(jack);
-			
-			//Calls generateCardID() to make a new cardID int based on the latest cardID in the array.  
-			cardID = generateCardID(title);
 			
 			//Creates a new JSONObject to store the card instance's attributes in.  
 			JSONObject joker = setupJSONObjectFromCard(jack);

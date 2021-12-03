@@ -156,7 +156,7 @@ public class JSONReader {
             card = generateCard(title, ia);
             cards.add(card);
         }
-
+        
         return ia;
         
     }
