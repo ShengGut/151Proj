@@ -50,7 +50,6 @@ public class JSONReader {
 		JSONObject deck = (JSONObject) reader.parse(fr);
 		fr.close();
 		return deck;
-		
 	}
 
 	public static JSONArray getDeckJSONArrayHand(File deckPath)
@@ -146,7 +145,7 @@ public class JSONReader {
         //Returns total number of cards added when finished.  
 		
 		//converts the given "title" into the file path for the intended deck
-		File deckPath = getDeckFileFromTitle(title);
+    	File deckPath = getDeckFileFromTitle(title);
 		
         int ia = 0;
         Card card = null;
