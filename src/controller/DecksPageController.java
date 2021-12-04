@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class DecksPageController extends SceneController {
@@ -26,10 +27,13 @@ public class DecksPageController extends SceneController {
 	private TextField titleEntry;
 	@FXML
 	StackPane stckPane;
+	@FXML
+	Rectangle homeCover;
 	private Stage stage;
 	private Scene scene;
 	private String title, oldTitle;
 	int x = 260, deck;
+	static int cover;
 	HomePageController hp = new HomePageController();
 	MakeCardController mc = new MakeCardController();
 	StudyPageController sp = new StudyPageController();
@@ -236,6 +240,9 @@ public class DecksPageController extends SceneController {
 			@Override
 			public void run() {
 				try {
+					if (cover == 1) {
+						homeCover.setTranslateY(-100);
+					}
 					File deckPath = new File("src/model/decks/DefaultDeck.json");
 					deck1.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
 					File deckPath2 = new File("src/model/decks/CustomDeck2.json");
@@ -263,7 +270,11 @@ public class DecksPageController extends SceneController {
 			}
 		});
 	}
-
+	
+	public static void homeBtnCover() {
+		cover = 1;
+	}
+	
 	// This Creates the new Deck
 	public void changeDeckName(ActionEvent event) throws IOException, ParseException, FileNotFoundException {
 		if (deck == 1) {

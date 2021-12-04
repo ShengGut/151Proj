@@ -20,7 +20,7 @@ public class MakeCardController {
 	@FXML private TextArea backEntry;
 	@FXML private TextField ratingEntry;
 	@FXML private Button close;
-	static String title = "DefaultDeck";
+	static String title;
 	
 	private String frontSide = "";
 	private String backSide = "";

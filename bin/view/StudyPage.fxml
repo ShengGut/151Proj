@@ -23,21 +23,9 @@
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="800.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#switchToHomePage" text="Home">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#switchToDecksPage" text="Decks">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#switchToHelpPage" text="Help">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
+            <Button mnemonicParsing="false" onAction="#switchToHomePage" text="Home" />
+            <Button mnemonicParsing="false" onAction="#switchToDecksPage" text="Decks" />
+            <Button mnemonicParsing="false" onAction="#switchToHelpPage" text="Help" />
          </children>
          <effect>
             <Glow level="0.25" />

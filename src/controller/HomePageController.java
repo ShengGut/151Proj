@@ -28,7 +28,7 @@ public class HomePageController extends JSONReader {
 	@FXML Label totalCardsLbl, newCardLbl, reviewLbl;
 	int newCardIni, newCardAft, totalCards, newCardReviewIni, totalCardsReview;
 	@FXML Label deckTitle;
-	static String title = "DefaultDeck";
+	static String title;
 	StudyPageController sp = new StudyPageController();
 
 	// This is the controller to switch to the main HomePage
@@ -42,6 +42,8 @@ public class HomePageController extends JSONReader {
 
 	// This is the controller to switch to the main DecksPage
 	public void switchToDecksPage(ActionEvent event) throws IOException {
+		controller.DecksPageController.homeBtnCover();
+		controller.SceneController.homeBtnCover();
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/DecksPage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -51,6 +53,8 @@ public class HomePageController extends JSONReader {
 
 	// This is the controller to switch to the HelpPage
 	public void switchToHelpPage(ActionEvent event) throws IOException {
+		controller.DecksPageController.homeBtnCover();
+		controller.SceneController.homeBtnCover();
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/HelpPage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
