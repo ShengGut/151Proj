@@ -112,6 +112,8 @@
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Label>
+            <Line fx:id="line1" endX="242.2928924560547" endY="208.2928924560547" opacity="0.0" startX="-100.0" stroke="RED" strokeWidth="2.0" />
+            <Line fx:id="line2" endX="-242.2928924560547" endY="208.2928924560547" opacity="0.0" startX="97.41423034667969" startY="-0.7350739240646362" stroke="RED" strokeWidth="2.0" />
          </children>
       </StackPane>
       <StackPane prefHeight="145.0" prefWidth="800.0">
@@ -129,7 +131,7 @@
                   <Insets right="600.0" />
                </StackPane.margin>
             </Rectangle>
-            <Button mnemonicParsing="false" onAction="#deleteCard" text="Remove Card">
+            <Button fx:id="removeBtn" mnemonicParsing="false" onAction="#confirmDeletion" text="Remove Cards">
                <StackPane.margin>
                   <Insets right="600.0" />
                </StackPane.margin></Button>
@@ -173,7 +175,17 @@
                   <Insets right="-250.0" top="-100.0" />
                </StackPane.margin>
             </Button>
+            <Label fx:id="removeLbl" opacity="0.0" text="Choose Cards to Remove">
+               <StackPane.margin>
+                  <Insets bottom="50.0" right="596.0" />
+               </StackPane.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </StackPane>
+      <Button fx:id="finishBtn" mnemonicParsing="false" onAction="#cancelDeletion" prefWidth="60.0" text="Finished" />
+      <Button fx:id="confirmBtn" mnemonicParsing="false" onAction="#deleteCard" prefWidth="60.0" text="Remove" />
    </children>
 </FlowPane>

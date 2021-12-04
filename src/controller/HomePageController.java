@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,10 +24,11 @@ public class HomePageController extends JSONReader {
 	private Stage stage, popup;
 	private Scene scene;
 	@FXML MenuButton menuBtn;
-	@FXML Label totalCardsLbl, newCardLbl;
-	int newCardIni, newCardAft, totalCards;
+	@FXML Label totalCardsLbl, newCardLbl, reviewLbl;
+	int newCardIni, newCardAft, totalCards, newCardReviewIni, totalCardsReview;
 	@FXML Label deckTitle;
 	static String title = "DefaultDeck";
+	StudyPageController sp = new StudyPageController();
 
 	// This is the controller to switch to the main HomePage
 	public void switchToHomePage(ActionEvent event) throws IOException, ParseException, FileNotFoundException {
@@ -96,7 +96,15 @@ public class HomePageController extends JSONReader {
 		totalCardsLbl.setText("" + totalCards);
 		return totalCards;
 	}
-
+	
+	public int setNumberOfReviews() throws FileNotFoundException, IOException, ParseException {
+		ArrayList<Card> cards = controller.CardReviewer.returnShowingCards(title);
+		newCardReviewIni = totalCardsReview;
+		totalCardsReview = (cards.size());
+		reviewLbl.setText("" + totalCardsReview);
+		return totalCardsReview;
+	}
+	
 	public void initialize() {
 		Platform.runLater(new Runnable() {
 			@Override
@@ -104,6 +112,7 @@ public class HomePageController extends JSONReader {
 				try {
 					deckTitle.setText(title);
 					setNumberOfCards();
+					setNumberOfReviews();
 				} catch (IOException | ParseException e) {
 					e.printStackTrace();
 				}
@@ -124,6 +133,8 @@ public class HomePageController extends JSONReader {
 		if (newCardIni + 1 == totalCards) {
 			newCardAft++;
 			newCardLbl.setText("" + newCardAft);
+			totalCardsReview = (cards.size());
+			reviewLbl.setText("" + totalCardsReview);
 		}
 	}
 
@@ -136,7 +147,7 @@ public class HomePageController extends JSONReader {
 	 * 
 	 */
 	
-	public void changer1() throws IOException {
+	public void changer1() {
 		title = "DefaultDeck";
 	}
 

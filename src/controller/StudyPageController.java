@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
@@ -22,12 +23,12 @@ public class StudyPageController extends SceneController {
 
 	private double newX = 0;
 	int startingCard = 1;
-	int i;
+	int i, pi;
 	private int cardID;
 	int totalCards, frontside, backside, toggle = 0;
-	@FXML
-	Label frontSide, backSide, cardPosition;
-	@FXML Label deckTitle;
+	@FXML Label frontSide, backSide, cardPosition, deckTitle, removeLbl;
+	@FXML Button removeBtn, confirmBtn, finishBtn, easyBtn, normalBtn, hardBtn, difficultBtn;
+	@FXML Line line1, line2;
 	static int x = 0;
 
 	// Test
@@ -62,9 +63,20 @@ public class StudyPageController extends SceneController {
 			@Override
 			public void run() {
 				try {
-					deckTitle.setText(title.substring(0, title.length() - 5));
+					deckTitle.setText(title);
 					if (setNumberOfCards() == 0) {
-						deckTitle.setText(title.substring(0, title.length() - 5));
+						if (x == 0) {
+							easyBtn.setTranslateY(200);
+							normalBtn.setTranslateY(200);
+							hardBtn.setTranslateY(200);
+							difficultBtn.setTranslateY(200);
+						} else {
+							easyBtn.setTranslateY(0);
+							normalBtn.setTranslateY(0);
+							hardBtn.setTranslateY(0);
+							difficultBtn.setTranslateY(-0);
+						}
+						deckTitle.setText(title);
 						System.out.println(title);
 						startingCard = 0;
 						cardPosition.setText(startingCard + "/" + setNumberOfCards());
@@ -72,6 +84,10 @@ public class StudyPageController extends SceneController {
 						backSide.setText("Professor Yazdankhah is the best");
 					} else {
 						if (x == 0) {
+							easyBtn.setTranslateY(200);
+							normalBtn.setTranslateY(200);
+							hardBtn.setTranslateY(200);
+							difficultBtn.setTranslateY(200);
 							cardPosition.setText(startingCard + "/" + setNumberOfCards());
 							model.JSONReader.getArrayOfDeck(title);
 							ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(title);
@@ -81,13 +97,23 @@ public class StudyPageController extends SceneController {
 							// Get initial Card ID
 							cardID = Cards.get(i).getID();
 						} else {
-							cardPosition.setText(startingCard + "/" + setNumberOfCards2());
+							easyBtn.setTranslateY(0);
+							normalBtn.setTranslateY(0);
+							hardBtn.setTranslateY(0);
+							difficultBtn.setTranslateY(-0);
 							ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
-							// set the frontSide and backSide text on the first card to display
-							frontSide.setText(Cards.get(frontside).getFrontSide());
-							backSide.setText(Cards.get(backside).getBackSide());
-							// Get initial Card ID
-							cardID = Cards.get(i).getID();
+							if (setNumberOfCards2() == 0) {
+								cardPosition.setText("0/0");
+								frontSide.setText("You Are Done Reviewing");
+								backSide.setText("Again, Professor Yazdankhah is the best");
+							} else {
+								cardPosition.setText(startingCard + "/" + setNumberOfCards2());
+								// set the frontSide and backSide text on the first card to display
+								frontSide.setText(Cards.get(frontside).getFrontSide());
+								backSide.setText(Cards.get(backside).getBackSide());
+								// Get initial Card ID
+								cardID = Cards.get(i).getID();
+							}
 						}
 					}
 				} catch (IOException | ParseException e) {
@@ -96,30 +122,6 @@ public class StudyPageController extends SceneController {
 				}
 			}
 		});
-	}
-	
-	public void getRatingEntry(ActionEvent event) throws FileNotFoundException, IOException, ParseException {
-		Object node = event.getSource();
-		Button b = (Button) node;
-		System.out.println(b.getText());
-		if (b.getText().equals("Easy"))
-			rating = 1;
-		else if (b.getText().equals("Normal"))
-			rating = 2;
-		else if (b.getText().equals("Hard"))
-			rating = 3;
-		else if (b.getText().equals("Difficult"))
-			rating = 4;
-		System.out.println("rating: " + rating);
-	}
-
-	// call studyCalculation in CardReviewer on action when rating is selected
-	public void updateCardStats(ActionEvent event) throws IOException, ParseException {
-		if (setNumberOfCards() > 0) {
-		getRatingEntry(event);
-		Card card = model.JSONReader.generateCard(title, cardID - 1);
-		CardReviewer.studyCalculation(card, rating);
-		}
 	}
 	
 	public void ToggleBtn(ActionEvent event) throws IOException {
@@ -165,10 +167,7 @@ public class StudyPageController extends SceneController {
 	}
 
 	public void nextArrow(MouseEvent event) throws IOException, ParseException {
-		if (startingCard != setNumberOfCards()) {
-			System.out.println(setNumberOfCards());
-			System.out.println(startingCard);
-			if (x == 0) {
+		if ((x == 0) && (startingCard != setNumberOfCards())) {
 				ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(title);
 				// Go through Cards to get their ID for removeCard
 				i++;
@@ -180,7 +179,9 @@ public class StudyPageController extends SceneController {
 				cardPosition.setText(startingCard + "/" + setNumberOfCards());
 				frontSide.setText(Cards.get(frontside).getFrontSide());
 				backSide.setText(Cards.get(backside).getBackSide());
-			} else if ((x == 1) && (startingCard != setNumberOfCards2())) {
+				//Change for review
+		}
+		if ((x == 1) && (startingCard != setNumberOfCards2())) {
 				ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
 				// Go through Cards to get their ID for removeCard
 				i++;
@@ -192,10 +193,11 @@ public class StudyPageController extends SceneController {
 				cardPosition.setText(startingCard + "/" + setNumberOfCards2());
 				frontSide.setText(Cards.get(frontside).getFrontSide());
 				backSide.setText(Cards.get(backside).getBackSide());
-			}
-			if (startingCard == 10) {
-				cardPosition.setPadding(new Insets(0, 0, 0, -4));
-			}
+		} else if ((x == 1) && (pi == 1)) {
+			pi = 0;
+		}
+		if (startingCard == 10) {
+			cardPosition.setPadding(new Insets(0, 0, 0, -4));
 		}
 	}
 
@@ -231,7 +233,100 @@ public class StudyPageController extends SceneController {
 			}
 		}
 	}
+	
+	//When there are only two review cards left
+	public void reviewAlmostFin() throws FileNotFoundException, IOException, ParseException {
+		if(startingCard == 1 && setNumberOfCards2() == 2) {
+			ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
+			i++;
+			// Make cardID equal to the cardID of the index of i
+			cardID = Cards.get(i).getID();
+			frontside++;
+			backside++;
+			frontSide.setText(Cards.get(frontside).getFrontSide());
+			backSide.setText(Cards.get(backside).getBackSide());
+			cardPosition.setText("1/1");
+		}
+	}
+	
+	//When you are finished reviewing
+	public void reviewFin() throws FileNotFoundException, IOException, ParseException {
+		if (startingCard == setNumberOfCards2()) {
+			startingCard = 0;
+			cardPosition.setText("0/0");
+			frontSide.setText("DONE");
+		}
+	}
+	
+	public void getRatingEntry(ActionEvent event) throws FileNotFoundException, IOException, ParseException {
+		Object node = event.getSource();
+		Button b = (Button) node;
+		System.out.println(b.getText());
+		if (b.getText().equals("Easy")) {
+			rating = 1;
+			reviewFin();
+			reviewAlmostFin();
+		}
+		else if (b.getText().equals("Normal"))  {
+			rating = 2;
+			reviewFin();
+			reviewAlmostFin();
+		}
+		else if (b.getText().equals("Hard")) {
+			rating = 3;
+			reviewFin();
+			reviewAlmostFin();
+		}
+		else if (b.getText().equals("Difficult")) {
+			rating = 4;
+			reviewFin();
+			reviewAlmostFin();
+		}
+		System.out.println("rating: " + rating);
+	}
 
+	// call studyCalculation in CardReviewer on action when rating is selected
+	public void updateCardStats(ActionEvent event) throws IOException, ParseException {
+		if (x == 0) {
+			if (setNumberOfCards() > 0) {
+				getRatingEntry(event);
+				Card card = model.JSONReader.generateCard(title, cardID - 1);
+				CardReviewer.studyCalculation(card, rating);
+			}
+		}
+		if (x == 1) {
+			if (setNumberOfCards2() > 0) {
+				getRatingEntry(event);
+				Card card = model.JSONReader.generateCard(title, cardID - 1);
+				CardReviewer.studyCalculation(card, rating);
+			}
+		}
+	}
+
+	public void confirmDeletion(ActionEvent event) throws IOException {
+		if (startingCard != 0) {
+		removeBtn.setTranslateY(100);
+		finishBtn.setTranslateY(-80);
+		finishBtn.setTranslateX(37);
+		confirmBtn.setTranslateY(-80);
+		confirmBtn.setTranslateX(42);
+		removeLbl.setOpacity(1);
+		line1.setOpacity(1);
+		line2.setOpacity(1);
+		}
+	}
+	
+	public void cancelDeletion(ActionEvent event) throws IOException {
+		removeBtn.setTranslateY(0);
+		finishBtn.setTranslateY(0);
+		finishBtn.setTranslateX(0);
+		confirmBtn.setTranslateY(0);
+		confirmBtn.setTranslateX(0);
+		removeLbl.setOpacity(0);
+		line1.setOpacity(0);
+		line2.setOpacity(0);
+	}
+	
 	// Call JSONWriter method in another class to delete the card
 	public void deleteCard(ActionEvent event) throws FileNotFoundException, IOException, ParseException {
 		// The deleteCard function only works if there is a card in the deck
@@ -243,7 +338,7 @@ public class StudyPageController extends SceneController {
 				backArrow(null);
 				// If the user tries to remove the first card, then it will transition to the
 				// second card
-			} else if (startingCard == 1 && setNumberOfCards() != 0) {
+			} else if ((x== 0) && (startingCard == 1 && setNumberOfCards() != 0)) {
 				ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(title);
 				cardPosition.setText(startingCard + "/" + setNumberOfCards());
 				frontSide.setText(Cards.get(frontside).getFrontSide());
@@ -251,7 +346,7 @@ public class StudyPageController extends SceneController {
 				// Get the next cardID
 				cardID = Cards.get(i).getID();
 				System.out.println(cardID);
-			} else if (startingCard == 1 && setNumberOfCards2() != 0) {
+			} else if ((x == 1) && (startingCard == 1 && setNumberOfCards2() != 0)) {
 				ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
 				cardPosition.setText(startingCard + "/" + setNumberOfCards2());
 				frontSide.setText(Cards.get(frontside).getFrontSide());
@@ -262,15 +357,32 @@ public class StudyPageController extends SceneController {
 				// If there are no more card, then set startingCard to display 0/0
 			} else {
 				startingCard = 0;
-				cardPosition.setText(startingCard + "/" + setNumberOfCards());
-				frontSide.setText("");
-				backSide.setText("");
+				if (x == 0) {
+					cardPosition.setText(startingCard + "/" + setNumberOfCards());
+					frontSide.setText("All Cards Have Been Deleted");
+					backSide.setText("Add A New Card");
+				}
+				if (x == 1) {
+					cardPosition.setText(startingCard + "/" + setNumberOfCards2());
+					frontSide.setText("You Are Done Reviewing");
+					backSide.setText("Go and Click the Study Button to Study More While You Wait");
+				}
 			}
+		}
+		if (startingCard == 0) {
+			removeBtn.setTranslateY(0);
+			finishBtn.setTranslateY(0);
+			finishBtn.setTranslateX(0);
+			confirmBtn.setTranslateY(0);
+			confirmBtn.setTranslateX(0);
+			removeLbl.setOpacity(0);
+			line1.setOpacity(0);
+			line2.setOpacity(0);
 		}
 	}
 
 	public static void switchxTo0() {
-		x = 0;
+		x = 0;	
 	}
 	
 	public static void switchxTo1() {

@@ -29,6 +29,7 @@ public class DecksPageController extends SceneController {
 	private TextField titleEntry;
 	@FXML
 	StackPane stckPane;
+	@FXML Label deck1;
 	private Stage stage;
 	private Scene scene;
 	private String title;
@@ -36,6 +37,7 @@ public class DecksPageController extends SceneController {
 	HomePageController hp = new HomePageController();
 	MakeCardController mc = new MakeCardController();
 	StudyPageController sp = new StudyPageController();
+	CardReviewer cr = new CardReviewer();
 
 	public void titleEntry() {
 		title = titleEntry.getText();
@@ -46,6 +48,7 @@ public class DecksPageController extends SceneController {
 		hp.changer1();
 		mc.changer1();
 		sp.changer1();
+		cr.changer1();
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -58,6 +61,7 @@ public class DecksPageController extends SceneController {
 		hp.changer2();
 		mc.changer2();
 		sp.changer2();
+		cr.changer2();
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -70,6 +74,7 @@ public class DecksPageController extends SceneController {
 		hp.changer3();
 		mc.changer3();
 		sp.changer3();
+		cr.changer3();
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -82,6 +87,7 @@ public class DecksPageController extends SceneController {
 		hp.changer4();
 		mc.changer4();
 		sp.changer4();
+		cr.changer4();
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -94,6 +100,7 @@ public class DecksPageController extends SceneController {
 		hp.changer5();
 		mc.changer5();
 		sp.changer5();
+		cr.changer5();
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -106,6 +113,7 @@ public class DecksPageController extends SceneController {
 		hp.changer6();
 		mc.changer6();
 		sp.changer6();
+		cr.changer6();
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -118,6 +126,7 @@ public class DecksPageController extends SceneController {
 		hp.changer7();
 		mc.changer7();
 		sp.changer7();
+		cr.changer7();
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -130,6 +139,7 @@ public class DecksPageController extends SceneController {
 		hp.changer8();
 		mc.changer8();
 		sp.changer8();
+		cr.changer8();
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -142,6 +152,7 @@ public class DecksPageController extends SceneController {
 		hp.changer9();
 		mc.changer9();
 		sp.changer9();
+		cr.changer9();
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -154,6 +165,7 @@ public class DecksPageController extends SceneController {
 		hp.changer10();
 		mc.changer10();
 		sp.changer10();
+		cr.changer10();
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -164,52 +176,7 @@ public class DecksPageController extends SceneController {
 	// This Creates the new Deck
 	public void createDeck(ActionEvent event) throws IOException, ParseException {
 		titleEntry();
-		File newDeck = new File("src/model/decks/" + title + ".json");
-		newDeck.createNewFile();
-		// Create the Rectangle Boxes + the Label which takes the name of the title
-		Rectangle rect = new Rectangle();
-		Label lbl = new Label(title);
-		lbl.setFont(Font.font(null, FontWeight.BOLD, 16));
-		StackPane.setMargin(rect, new Insets(0, x, 200, 0));
-		rect.setFill(Color.web("#dadada"));
-		rect.setStrokeWidth(1);
-		rect.setStroke(Color.web("000000"));
-		StackPane.setMargin(lbl, new Insets(0, x, 200, 0));
-		x = x - 370;
-		rect.setWidth(150);
-		rect.setHeight(200);
-		stckPane.getChildren().addAll(rect, lbl);
-		// Set the Event to change scenes when the box and mouse is clicked
-		rect.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent t) {
-				FlowPane root = null;
-				try {
-					root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				scene = new Scene(root);
-				stage.setScene(scene);
-				stage.show();
-			}
-		});
-		lbl.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent t) {
-				FlowPane root = null;
-				try {
-					root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				scene = new Scene(root);
-				stage.setScene(scene);
-				stage.show();
-			}
-		});
+		deck1.setText(title);
 		// clear the TextEntry when finished
 		titleEntry.clear();
 	}

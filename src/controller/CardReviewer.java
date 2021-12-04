@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,6 +7,8 @@ import java.util.ArrayList;
 import org.json.simple.parser.ParseException;
 
 public class CardReviewer {
+	
+	static String title = "DefaultDeck";
 	
 	// calculate time to study for card
 	public static void studyCalculation (Card card, int rating) { 
@@ -38,7 +39,7 @@ public class CardReviewer {
 		int msInADay = 60 * 60 * 24 * 1000;
 		long present = System.currentTimeMillis();
 		long nextReviewDate =  msInADay + present * interval;
-		String deckTitle = "DefaultDeck"; //Change this so that it takes in all of the files
+		String deckTitle = title; //Change this so that it takes in all of the files
 		int cardID = card.getID();
 		
 		
@@ -71,6 +72,46 @@ public class CardReviewer {
 		
 		return shownCards;
 		
+	}
+	
+	public void changer1() {
+		title = "DefaultDeck";
+	}
+	
+	public void changer2() {
+		title = "CustomDeck2";
+	}
+	
+	public void changer3() {
+		title = "CustomDeck3";
+	}
+	
+	public void changer4() {
+		title = "CustomDeck4";
+	}
+	
+	public void changer5() {
+		title = "CustomDeck5";
+	}
+	
+	public void changer6() {
+		title = "CustomDeck6";
+	}
+	
+	public void changer7() {
+		title = "CustomDeck7";
+	}
+	
+	public void changer8() {
+		title = "CustomDeck8";
+	}
+	
+	public void changer9() {
+		title = "CustomDeck9";
+	}
+	
+	public void changer10() {
+		title = "CustomDeck10";
 	}
 	
 }
