@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -22,10 +23,9 @@ public class DecksPageController extends SceneController {
 	private TextField titleEntry;
 	@FXML
 	StackPane stckPane;
-	@FXML Label deck1;
 	private Stage stage;
 	private Scene scene;
-	private String title;
+	private String title, oldTitle;
 	int x = 260;
 	HomePageController hp = new HomePageController();
 	MakeCardController mc = new MakeCardController();
@@ -165,11 +165,55 @@ public class DecksPageController extends SceneController {
 		stage.setScene(scene);
 		stage.show();
 	}
-
+	
+	// This controller allows you to select a deck
+	@FXML Button deck1Btn, deck2Btn, deck3Btn, deck4Btn, deck5Btn, deck6Btn, deck7Btn, deck8Btn, deck9Btn, deck10Btn;
+	@FXML Label deck1, deck2, deck3, deck4, deck5, deck6, deck7, deck8, deck9, deck10, deckSelectedLbl;
+	public void deckChooser(ActionEvent event) throws IOException {
+		Object node = event.getSource();
+		Button b = (Button) node;
+		if (b.getText().equals("Deck 1")) {
+			deckSelectedLbl.setText("*Deck 1 Selected");
+			oldTitle = deck1.getText();
+			System.out.println(oldTitle);
+		} else if (b.getText().equals("Deck 2")) {
+			deckSelectedLbl.setText("*Deck 2 Selected");
+			oldTitle = deck2.getText();
+			System.out.println(oldTitle);
+		} else if (b.getText().equals("Deck 3")) {
+			deckSelectedLbl.setText("*Deck 3 Selected");
+			oldTitle = deck3.getText();
+		} else if (b.getText().equals("Deck 4")) {
+			deckSelectedLbl.setText("*Deck 4 Selected");
+			oldTitle = deck4.getText();
+		} else if (b.getText().equals("Deck 5")) {
+			deckSelectedLbl.setText("*Deck 5 Selected");
+			oldTitle = deck5.getText();
+		} else if (b.getText().equals("Deck 6")) {
+			deckSelectedLbl.setText("*Deck 6 Selected");
+			oldTitle = deck6.getText();
+		} else if (b.getText().equals("Deck 7")) {
+			deckSelectedLbl.setText("*Deck 7 Selected");
+			oldTitle = deck7.getText();
+		} else if (b.getText().equals("Deck 8")) {
+			deckSelectedLbl.setText("*Deck 8 Selected");
+			oldTitle = deck8.getText();
+		} else if (b.getText().equals("Deck 9")) {
+			deckSelectedLbl.setText("*Deck 9 Selected");
+			oldTitle = deck9.getText();
+		} else if (b.getText().equals("Deck 10")) {
+			deckSelectedLbl.setText("*Deck 10 Selected");
+			oldTitle = deck10.getText();
+		}
+	}
+	
 	// This Creates the new Deck
 	public void changeDeckName(ActionEvent event) throws IOException, ParseException {
 		titleEntry();
-		deck1.setText(title);
+		System.out.println(oldTitle);
+		System.out.println(title);
+		model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
+		deck2.setText(title);
 		// clear the TextEntry when finished
 		titleEntry.clear();
 	}

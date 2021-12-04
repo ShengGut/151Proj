@@ -133,8 +133,7 @@ public class HomePageController extends JSONReader {
 		if (newCardIni + 1 == totalCards) {
 			newCardAft++;
 			newCardLbl.setText("" + newCardAft);
-			totalCardsReview = (cards.size());
-			reviewLbl.setText("" + totalCardsReview);
+			setNumberOfReviews();
 		}
 	}
 

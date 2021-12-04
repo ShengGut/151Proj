@@ -79,9 +79,16 @@ public class StudyPageController extends SceneController {
 						deckTitle.setText(title);
 						System.out.println(title);
 						startingCard = 0;
-						cardPosition.setText(startingCard + "/" + setNumberOfCards());
-						frontSide.setText("Hello, please add a card");
-						backSide.setText("Professor Yazdankhah is the best");
+						if (x == 0) {
+							cardPosition.setText(startingCard + "/" + setNumberOfCards());
+							frontSide.setText("Hello, please add a card");
+							backSide.setText("Professor Yazdankhah is the best");
+						}
+						if (x == 1) {
+							cardPosition.setText(startingCard + "/" + setNumberOfCards2());
+							frontSide.setText("You Are Done Reviewing");
+							backSide.setText("Again, Professor Yazdankhah is the best");
+						}
 					} else {
 						if (x == 0) {
 							easyBtn.setTranslateY(200);
@@ -104,18 +111,12 @@ public class StudyPageController extends SceneController {
 							leftTriangle.setTranslateY(400);
 							difficultBtn.setTranslateY(-0);
 							ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
-							if (setNumberOfCards2() == 0) {
-								cardPosition.setText("0/0");
-								frontSide.setText("You Are Done Reviewing");
-								backSide.setText("Again, Professor Yazdankhah is the best");
-							} else {
-								cardPosition.setText(startingCard + "/" + setNumberOfCards2());
-								// set the frontSide and backSide text on the first card to display
-								frontSide.setText(Cards.get(frontside).getFrontSide());
-								backSide.setText(Cards.get(backside).getBackSide());
-								// Get initial Card ID
-								cardID = Cards.get(i).getID();
-							}
+							cardPosition.setText(startingCard + "/" + setNumberOfCards2());
+							// set the frontSide and backSide text on the first card to display
+							frontSide.setText(Cards.get(frontside).getFrontSide());
+							backSide.setText(Cards.get(backside).getBackSide());
+							// Get initial Card ID
+							cardID = Cards.get(i).getID();
 						}
 					}
 				} catch (IOException | ParseException e) {
@@ -314,6 +315,7 @@ public class StudyPageController extends SceneController {
 
 	public void confirmDeletion(ActionEvent event) throws IOException {
 		if (startingCard != 0) {
+			System.out.println(startingCard);
 		removeBtn.setTranslateY(100);
 		finishBtn.setTranslateY(-80);
 		finishBtn.setTranslateX(37);

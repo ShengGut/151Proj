@@ -44,11 +44,6 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" onAction="#deckChooserBtn" text="⚙" StackPane.alignment="CENTER_RIGHT">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
          </children>
       </StackPane>
       <Line endX="800.0" startX="1.0" />
