@@ -25,7 +25,7 @@ public class StudyPageController extends SceneController {
 	int startingCard = 1;
 	private int cardID;
 	int totalCards, totalCards2, index, toggle;
-	@FXML Label frontSide, backSide, cardPosition, deckTitle, removeLbl;
+	@FXML Label frontSide, backSide, cardPosition, deckTitle, removeLbl, questLbl, ansLbl;
 	@FXML Button removeBtn, confirmBtn, finishBtn, easyBtn, normalBtn, hardBtn, difficultBtn;
 	@FXML Line line1, line2;
 	static int x = 0;
@@ -49,6 +49,7 @@ public class StudyPageController extends SceneController {
 	public int setNumberOfCards2() throws FileNotFoundException, IOException, ParseException {
 		ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
 		totalCards2 = (Cards.size());
+		System.out.println("This is the total cards " + totalCards2);
 		return totalCards2;
 	}
 	
@@ -59,6 +60,7 @@ public class StudyPageController extends SceneController {
 			public void run() {
 				try {
 					deckTitle.setText(title);
+					ansLbl.setOpacity(0);
 					if (x == 0) {
 						easyBtn.setTranslateY(200);
 						normalBtn.setTranslateY(200);
@@ -118,9 +120,12 @@ public class StudyPageController extends SceneController {
 			newX = -200;
 			firstSquare.setTranslateX(newX);
 			frontSide.setTranslateX(newX);
+			questLbl.setTranslateX(newX);
 			newX = 200;
 			secondSquare.setTranslateX(newX);
 			backSide.setTranslateX(newX);
+			ansLbl.setOpacity(1);
+			ansLbl.setTranslateX(newX);
 			leftTriangle.setVisible(false);
 			rightTriangle.setVisible(false);
 			blocker.setTranslateX(225);
@@ -132,8 +137,11 @@ public class StudyPageController extends SceneController {
 			newX = 0;
 			firstSquare.setTranslateX(newX);
 			frontSide.setTranslateX(newX);
+			questLbl.setTranslateX(newX);
 			secondSquare.setTranslateX(newX);
 			backSide.setTranslateX(newX);
+			ansLbl.setOpacity(0);
+			ansLbl.setTranslateX(newX);
 			leftTriangle.setVisible(true);
 			rightTriangle.setVisible(true);
 			blocker.setTranslateX(0);
@@ -147,10 +155,14 @@ public class StudyPageController extends SceneController {
 		if (toggle == 0) {
 			backSide.setOpacity(1);
 			frontSide.setOpacity(0);
+			questLbl.setOpacity(0);
+			ansLbl.setOpacity(1);
 			toggle = 1;
 		} else if (toggle == 1) {
 			backSide.setOpacity(0);
 			frontSide.setOpacity(1);
+			questLbl.setOpacity(1);
+			ansLbl.setOpacity(0);
 			toggle = 0;
 		}
 	}
@@ -207,18 +219,14 @@ public class StudyPageController extends SceneController {
 		}
 		else if (b.getText().equals("Difficult")) {
 			rating = 4;
-
 		}
-		System.out.println("Break " + totalCards2);
-		System.out.println("index " + index);
-		//if (totalCards2 != 1) {
+		if (totalCards2 != 1) {
 			ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
-			System.out.println(Cards.size());
-			cardID = Cards.get(0).getID();
-			frontSide.setText(Cards.get(0).getFrontSide());
-			backSide.setText(Cards.get(0).getBackSide());
-			cardPosition.setText(totalCards2 + "/" + setNumberOfCards2());
-		//}
+			System.out.println(cardID + " This is card ID");
+			frontSide.setText(Cards.get(1).getFrontSide());
+			backSide.setText(Cards.get(1).getBackSide());
+			cardPosition.setText("1/" + setNumberOfCards2());
+		}
 		if (totalCards2 == 1) {
 			frontSide.setText("Done");
 			cardPosition.setText("0/0");
