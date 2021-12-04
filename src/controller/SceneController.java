@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
@@ -11,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
@@ -22,12 +23,15 @@ public class SceneController {
 	private Scene scene;
 	@FXML
 	Rectangle homeCover;
+	@FXML
+	Label errorLbl;
 	static int cover;
 	
 	public void initialize() {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				errorLbl.setOpacity(0);
 				if (cover == 1) {
 					homeCover.setTranslateY(-100);
 				}
@@ -37,6 +41,10 @@ public class SceneController {
 	
 	public static void homeBtnCover() {
 		cover = 1;
+	}
+	
+	public void errorMsg(MouseEvent event) throws IOException {
+		errorLbl.setOpacity(1);
 	}
 	
 	//This is the controller to switch to the main HomePage

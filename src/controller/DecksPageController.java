@@ -29,6 +29,8 @@ public class DecksPageController extends SceneController {
 	StackPane stckPane;
 	@FXML
 	Rectangle homeCover;
+	@FXML
+	Label errorLbl;
 	private Stage stage;
 	private Scene scene;
 	private String title, oldTitle;
@@ -173,6 +175,10 @@ public class DecksPageController extends SceneController {
 		stage.show();
 	}
 	
+	public void errorMsg(MouseEvent event) throws IOException {
+		errorLbl.setOpacity(1);
+	}
+	
 	// This controller allows you to select a deck
 	@FXML
 	Button deck1Btn, deck2Btn, deck3Btn, deck4Btn, deck5Btn, deck6Btn, deck7Btn, deck8Btn, deck9Btn, deck10Btn;
@@ -240,6 +246,7 @@ public class DecksPageController extends SceneController {
 			@Override
 			public void run() {
 				try {
+					errorLbl.setOpacity(0);
 					if (cover == 1) {
 						homeCover.setTranslateY(-100);
 					}
@@ -275,78 +282,73 @@ public class DecksPageController extends SceneController {
 		cover = 1;
 	}
 	
-	// This Creates the new Deck
+	public void afterDeckTitleUpdate() {
+		deck = 0;
+		deckSelectedLbl.setText("*No Deck Selected");
+	}
+	
+	// This changes the deck name
 	public void changeDeckName(ActionEvent event) throws IOException, ParseException, FileNotFoundException {
 		if (deck == 1) {
 			File deckPath = new File("src/model/decks/DefaultDeck.json");
 			titleEntry();
-			System.out.println(oldTitle);
-			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
 			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
 			deck1.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+			afterDeckTitleUpdate();
 		} else if (deck == 2) {
 			File deckPath = new File("src/model/decks/CustomDeck2.json");
 			titleEntry();
-			System.out.println(oldTitle);
-			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
 			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
 			deck2.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+			afterDeckTitleUpdate();
 		} else if (deck == 3) {
 			File deckPath = new File("src/model/decks/CustomDeck3.json");
 			titleEntry();
-			System.out.println(oldTitle);
-			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
 			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
 			deck3.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+			afterDeckTitleUpdate();
 		} else if (deck == 4) {
 			File deckPath = new File("src/model/decks/CustomDeck4.json");
 			titleEntry();
-			System.out.println(oldTitle);
-			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
 			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
 			deck4.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+			afterDeckTitleUpdate();
 		} else if (deck == 5) {
 			File deckPath = new File("src/model/decks/CustomDeck5.json");
 			titleEntry();
-			System.out.println(oldTitle);
-			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
 			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
 			deck5.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+			afterDeckTitleUpdate();
 		} else if (deck == 6) {
 			File deckPath = new File("src/model/decks/CustomDeck6.json");
 			titleEntry();
-			System.out.println(oldTitle);
-			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
 			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
 			deck6.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+			afterDeckTitleUpdate();
 		} else if (deck == 7) {
 			File deckPath = new File("src/model/decks/CustomDeck7.json");
 			titleEntry();
-			System.out.println(oldTitle);
-			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
 			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
 			deck7.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+			afterDeckTitleUpdate();
 		} else if (deck == 8) {
 			File deckPath = new File("src/model/decks/CustomDeck8.json");
 			titleEntry();
-			System.out.println(oldTitle);
-			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
 			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
 			deck8.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+			afterDeckTitleUpdate();
 		}else if (deck == 9) {
 			File deckPath = new File("src/model/decks/CustomDeck9.json");
 			titleEntry();
-			System.out.println(oldTitle);
-			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
 			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
 			deck9.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+			afterDeckTitleUpdate();
 		}else if (deck == 10) {
 			File deckPath = new File("src/model/decks/CustomDeck10.json");
 			titleEntry();
-			System.out.println(oldTitle);
-			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
 			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
 			deck10.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+			afterDeckTitleUpdate();
 		}
 		// clear the TextEntry when finished
 		titleEntry.clear();
