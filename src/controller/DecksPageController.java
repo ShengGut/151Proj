@@ -1,9 +1,12 @@
 package controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +29,7 @@ public class DecksPageController extends SceneController {
 	private Stage stage;
 	private Scene scene;
 	private String title, oldTitle;
-	int x = 260;
+	int x = 260, deck;
 	HomePageController hp = new HomePageController();
 	MakeCardController mc = new MakeCardController();
 	StudyPageController sp = new StudyPageController();
@@ -167,53 +170,173 @@ public class DecksPageController extends SceneController {
 	}
 	
 	// This controller allows you to select a deck
-	@FXML Button deck1Btn, deck2Btn, deck3Btn, deck4Btn, deck5Btn, deck6Btn, deck7Btn, deck8Btn, deck9Btn, deck10Btn;
-	@FXML Label deck1, deck2, deck3, deck4, deck5, deck6, deck7, deck8, deck9, deck10, deckSelectedLbl;
-	public void deckChooser(ActionEvent event) throws IOException {
+	@FXML
+	Button deck1Btn, deck2Btn, deck3Btn, deck4Btn, deck5Btn, deck6Btn, deck7Btn, deck8Btn, deck9Btn, deck10Btn;
+	@FXML
+	Label deck1, deck2, deck3, deck4, deck5, deck6, deck7, deck8, deck9, deck10, deckSelectedLbl;
+
+	public void deckChooser(ActionEvent event) throws IOException, ParseException, FileNotFoundException {
 		Object node = event.getSource();
 		Button b = (Button) node;
 		if (b.getText().equals("Deck 1")) {
-			deckSelectedLbl.setText("*Deck 1 Selected");
+			File deckPath = new File("src/model/decks/DefaultDeck.json");
+			deckSelectedLbl.setText("*" + model.JSONReader.getDeckTitleFromFile(deckPath) + " Deck Selected");
 			oldTitle = deck1.getText();
-			System.out.println(oldTitle);
+			deck = 1;
 		} else if (b.getText().equals("Deck 2")) {
-			deckSelectedLbl.setText("*Deck 2 Selected");
+			File deckPath = new File("src/model/decks/CustomDeck2.json");
+			deckSelectedLbl.setText("*" + model.JSONReader.getDeckTitleFromFile(deckPath) + " Deck Selected");
 			oldTitle = deck2.getText();
-			System.out.println(oldTitle);
+			deck = 2;
 		} else if (b.getText().equals("Deck 3")) {
-			deckSelectedLbl.setText("*Deck 3 Selected");
+			File deckPath = new File("src/model/decks/CustomDeck3.json");
+			deckSelectedLbl.setText("*" + model.JSONReader.getDeckTitleFromFile(deckPath) + " Deck Selected");
 			oldTitle = deck3.getText();
+			deck = 3;
 		} else if (b.getText().equals("Deck 4")) {
-			deckSelectedLbl.setText("*Deck 4 Selected");
+			File deckPath = new File("src/model/decks/CustomDeck4.json");
+			deckSelectedLbl.setText("*" + model.JSONReader.getDeckTitleFromFile(deckPath) + " Deck Selected");
 			oldTitle = deck4.getText();
+			deck = 4;
 		} else if (b.getText().equals("Deck 5")) {
-			deckSelectedLbl.setText("*Deck 5 Selected");
+			File deckPath = new File("src/model/decks/CustomDeck5.json");
+			deckSelectedLbl.setText("*" + model.JSONReader.getDeckTitleFromFile(deckPath) + " Deck Selected");
 			oldTitle = deck5.getText();
+			deck = 5;
 		} else if (b.getText().equals("Deck 6")) {
-			deckSelectedLbl.setText("*Deck 6 Selected");
+			File deckPath = new File("src/model/decks/CustomDeck6.json");
+			deckSelectedLbl.setText("*" + model.JSONReader.getDeckTitleFromFile(deckPath) + " Deck Selected");
 			oldTitle = deck6.getText();
+			deck = 6;
 		} else if (b.getText().equals("Deck 7")) {
-			deckSelectedLbl.setText("*Deck 7 Selected");
+			File deckPath = new File("src/model/decks/CustomDeck7.json");
+			deckSelectedLbl.setText("*" + model.JSONReader.getDeckTitleFromFile(deckPath) + " Deck Selected");
 			oldTitle = deck7.getText();
+			deck = 7;
 		} else if (b.getText().equals("Deck 8")) {
-			deckSelectedLbl.setText("*Deck 8 Selected");
+			File deckPath = new File("src/model/decks/CustomDeck8.json");
+			deckSelectedLbl.setText("*" + model.JSONReader.getDeckTitleFromFile(deckPath) + " Deck Selected");
 			oldTitle = deck8.getText();
+			deck = 8;
 		} else if (b.getText().equals("Deck 9")) {
-			deckSelectedLbl.setText("*Deck 9 Selected");
+			File deckPath = new File("src/model/decks/CustomDeck9.json");
+			deckSelectedLbl.setText("*" + model.JSONReader.getDeckTitleFromFile(deckPath) + " Deck Selected");
 			oldTitle = deck9.getText();
+			deck = 9;
 		} else if (b.getText().equals("Deck 10")) {
-			deckSelectedLbl.setText("*Deck 10 Selected");
+			File deckPath = new File("src/model/decks/CustomDeck10.json");
+			deckSelectedLbl.setText("*" + model.JSONReader.getDeckTitleFromFile(deckPath) + " Deck Selected");
 			oldTitle = deck10.getText();
+			deck = 10;
 		}
 	}
 	
+	public void initialize() {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					File deckPath = new File("src/model/decks/DefaultDeck.json");
+					deck1.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+					File deckPath2 = new File("src/model/decks/CustomDeck2.json");
+					deck2.setText(model.JSONReader.getDeckTitleFromFile(deckPath2));
+					File deckPath3 = new File("src/model/decks/CustomDeck3.json");
+					deck3.setText(model.JSONReader.getDeckTitleFromFile(deckPath3));
+					File deckPath4 = new File("src/model/decks/CustomDeck4.json");
+					deck4.setText(model.JSONReader.getDeckTitleFromFile(deckPath4));
+					File deckPath5 = new File("src/model/decks/CustomDeck5.json");
+					deck5.setText(model.JSONReader.getDeckTitleFromFile(deckPath5));
+					File deckPath6 = new File("src/model/decks/CustomDeck6.json");
+					deck6.setText(model.JSONReader.getDeckTitleFromFile(deckPath6));
+					File deckPath7 = new File("src/model/decks/CustomDeck7.json");
+					deck7.setText(model.JSONReader.getDeckTitleFromFile(deckPath7));
+					File deckPath8 = new File("src/model/decks/CustomDeck8.json");
+					deck8.setText(model.JSONReader.getDeckTitleFromFile(deckPath8));
+					File deckPath9 = new File("src/model/decks/CustomDeck9.json");
+					deck9.setText(model.JSONReader.getDeckTitleFromFile(deckPath9));
+					File deckPath10 = new File("src/model/decks/CustomDeck10.json");
+					deck10.setText(model.JSONReader.getDeckTitleFromFile(deckPath10));
+				} catch (IOException | ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
 	// This Creates the new Deck
-	public void changeDeckName(ActionEvent event) throws IOException, ParseException {
-		titleEntry();
-		System.out.println(oldTitle);
-		System.out.println(title);
-		model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
-		deck2.setText(title);
+	public void changeDeckName(ActionEvent event) throws IOException, ParseException, FileNotFoundException {
+		if (deck == 1) {
+			File deckPath = new File("src/model/decks/DefaultDeck.json");
+			titleEntry();
+			System.out.println(oldTitle);
+			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
+			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
+			deck1.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+		} else if (deck == 2) {
+			File deckPath = new File("src/model/decks/CustomDeck2.json");
+			titleEntry();
+			System.out.println(oldTitle);
+			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
+			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
+			deck2.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+		} else if (deck == 3) {
+			File deckPath = new File("src/model/decks/CustomDeck3.json");
+			titleEntry();
+			System.out.println(oldTitle);
+			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
+			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
+			deck3.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+		} else if (deck == 4) {
+			File deckPath = new File("src/model/decks/CustomDeck4.json");
+			titleEntry();
+			System.out.println(oldTitle);
+			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
+			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
+			deck4.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+		} else if (deck == 5) {
+			File deckPath = new File("src/model/decks/CustomDeck5.json");
+			titleEntry();
+			System.out.println(oldTitle);
+			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
+			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
+			deck5.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+		} else if (deck == 6) {
+			File deckPath = new File("src/model/decks/CustomDeck6.json");
+			titleEntry();
+			System.out.println(oldTitle);
+			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
+			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
+			deck6.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+		} else if (deck == 7) {
+			File deckPath = new File("src/model/decks/CustomDeck7.json");
+			titleEntry();
+			System.out.println(oldTitle);
+			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
+			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
+			deck7.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+		} else if (deck == 8) {
+			File deckPath = new File("src/model/decks/CustomDeck8.json");
+			titleEntry();
+			System.out.println(oldTitle);
+			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
+			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
+			deck8.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+		}else if (deck == 9) {
+			File deckPath = new File("src/model/decks/CustomDeck9.json");
+			titleEntry();
+			System.out.println(oldTitle);
+			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
+			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
+			deck9.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+		}else if (deck == 10) {
+			File deckPath = new File("src/model/decks/CustomDeck10.json");
+			titleEntry();
+			System.out.println(oldTitle);
+			System.out.println(model.JSONReader.getDeckTitleFromFile(deckPath));
+			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
+			deck10.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
+		}
 		// clear the TextEntry when finished
 		titleEntry.clear();
 	}

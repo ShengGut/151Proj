@@ -63,6 +63,13 @@ public class JSONReader {
 		return hand;
 	}
 
+    public static String getDeckTitleFromFile(File deckPath) 
+            throws FileNotFoundException, IOException, ParseException {
+        
+        return (String) getInitialJSONObject(deckPath).get("deckTitle");
+        
+    }
+	
     public static File getDeckFileFromTitle(String title) 
 			throws FileNotFoundException, IOException, ParseException {
 

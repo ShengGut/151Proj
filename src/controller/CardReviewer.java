@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -76,44 +77,54 @@ public class CardReviewer {
 		
 	}
 	
-	public void changer1() {
-		title = "DefaultDeck";
+	public void changer1() throws FileNotFoundException, IOException, ParseException {
+		File deckPath = new File("src/model/decks/DefaultDeck.json");
+		title = model.JSONReader.getDeckTitleFromFile(deckPath);
+	}
+
+	public void changer2() throws FileNotFoundException, IOException, ParseException {
+		File deckPath = new File("src/model/decks/CustomDeck2.json");
+		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
 	
-	public void changer2() {
-		title = "CustomDeck2";
+	public void changer3() throws FileNotFoundException, IOException, ParseException {
+		File deckPath = new File("src/model/decks/CustomDeck3.json");
+		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
 	
-	public void changer3() {
-		title = "CustomDeck3";
+	public void changer4() throws FileNotFoundException, IOException, ParseException {
+		File deckPath = new File("src/model/decks/CustomDeck4.json");
+		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
 	
-	public void changer4() {
-		title = "CustomDeck4";
+	public void changer5() throws FileNotFoundException, IOException, ParseException {
+		File deckPath = new File("src/model/decks/CustomDeck5.json");
+		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
 	
-	public void changer5() {
-		title = "CustomDeck5";
+	public void changer6() throws FileNotFoundException, IOException, ParseException {
+		File deckPath = new File("src/model/decks/CustomDeck6.json");
+		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
 	
-	public void changer6() {
-		title = "CustomDeck6";
+	public void changer7() throws FileNotFoundException, IOException, ParseException {
+		File deckPath = new File("src/model/decks/CustomDeck7.json");
+		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
 	
-	public void changer7() {
-		title = "CustomDeck7";
+	public void changer8() throws FileNotFoundException, IOException, ParseException {
+		File deckPath = new File("src/model/decks/CustomDeck8.json");
+		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
 	
-	public void changer8() {
-		title = "CustomDeck8";
+	public void changer9() throws FileNotFoundException, IOException, ParseException {
+		File deckPath = new File("src/model/decks/CustomDeck9.json");
+		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
 	
-	public void changer9() {
-		title = "CustomDeck9";
-	}
-	
-	public void changer10() {
-		title = "CustomDeck10";
+	public void changer10() throws FileNotFoundException, IOException, ParseException {
+		File deckPath = new File("src/model/decks/CustomDeck10.json");
+		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
 	
 }
