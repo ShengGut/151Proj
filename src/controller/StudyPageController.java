@@ -100,6 +100,8 @@ public class StudyPageController extends SceneController {
 							easyBtn.setTranslateY(0);
 							normalBtn.setTranslateY(0);
 							hardBtn.setTranslateY(0);
+							rightTriangle.setTranslateY(400);
+							leftTriangle.setTranslateY(400);
 							difficultBtn.setTranslateY(-0);
 							ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
 							if (setNumberOfCards2() == 0) {
@@ -264,23 +266,30 @@ public class StudyPageController extends SceneController {
 		System.out.println(b.getText());
 		if (b.getText().equals("Easy")) {
 			rating = 1;
-			reviewFin();
-			reviewAlmostFin();
+			if (totalCards != 1 ) {
+				System.out.println("L");
+				ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
+				frontside++;
+				backside++;
+				frontSide.setText(Cards.get(frontside).getFrontSide());
+				backSide.setText(Cards.get(backside).getBackSide());
+			}
+			if (totalCards == 1) {
+				frontSide.setText("Done");
+				cardPosition.setText("0/0");
+			}
 		}
 		else if (b.getText().equals("Normal"))  {
 			rating = 2;
-			reviewFin();
-			reviewAlmostFin();
+	
 		}
 		else if (b.getText().equals("Hard")) {
 			rating = 3;
-			reviewFin();
-			reviewAlmostFin();
+
 		}
 		else if (b.getText().equals("Difficult")) {
 			rating = 4;
-			reviewFin();
-			reviewAlmostFin();
+
 		}
 		System.out.println("rating: " + rating);
 	}
