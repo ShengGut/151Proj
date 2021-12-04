@@ -41,6 +41,16 @@ public class JSONWriter extends JSONReader {
 		writeToJSON(deckPath, deck);
 		
 	}
+
+	public static void publicUpdateDeckTitle(String oldTitle, String newTitle) 
+			throws FileNotFoundException, IOException, ParseException {
+
+		//converts the given "title" into the file path for the intended deck
+		File deckPath = getDeckFileFromTitle(oldTitle);
+
+		updateDeckTitle(deckPath, newTitle);
+		
+	}
 	
 	public static void removeCard(String title, int cardID) //give a "boolean" confirmation sorta thing
 			throws FileNotFoundException, IOException, ParseException {
@@ -81,7 +91,7 @@ public class JSONWriter extends JSONReader {
 		
 	}
 	
-	public static boolean createCard(String title, String frontSide, String backSide, int rating, int repetition, int interval, long nextReviewDate, long exactReviewMoment)
+	public static boolean createCard(String title, String frontSide, String backSide, int rating, int repetition, int interval, long nextReviewDate)
 			throws FileNotFoundException, IOException, ParseException {
 		//Creates a Card instance using inputed parameters and adds it to the List of "cards".
 		//Includes the Card in the linked JSON file.
@@ -104,7 +114,6 @@ public class JSONWriter extends JSONReader {
 			
 			//Creates a Card instance and adds it to the List.  
 			Card jack = new Card(cardID, frontSide, backSide, rating, repetition, interval, nextReviewDate);
-			cards.add(jack);
 			
 			//Creates a new JSONObject to store the card instance's attributes in.  
 			JSONObject joker = setupJSONObjectFromCard(jack);
@@ -117,57 +126,51 @@ public class JSONWriter extends JSONReader {
 
 			//Calls writeToJSON() to update the JSONFile.  
 			writeToJSON(deckPath, hand);
-			
+
+			generateDeck(title);
 			return true;
+			
 		}
 		
 		return false;
 		
 	}
 	
-	//code is under development and is still experimental.
-	public static boolean updateCard(String title, int cardID, String key, Object value, String key2, Object value2, String key3, Object value3, String key4, Object value4) 
+
+	public static Card makeNewCard(String title, String frontSide, String backSide, int rating, int repetition, int interval, long nextReviewDate)
 			throws FileNotFoundException, IOException, ParseException {
-		// model.JSONWriter.updateCard(path, cardID, "nextReviewDate", nextReviewDate, "rating", rating, "repetition", repetition, "interval", interval);
+
+		//Calls generateCardID() to make a new cardID int based on the latest cardID in the array.    
+		int cardID = 1;
+		cardID = generateCardID(title);
+			
+		//Creates a Card instance and adds it to the List.  
+		Card jack = new Card(cardID, frontSide, backSide, rating, repetition, interval, nextReviewDate);
+		return jack;
+		
+	}
+	
+	//code is under development and is still experimental.
+	public static void updateCard(String deckTitle, int cardID, String frontSide, String backSide, int rating, int repetition, int interval, long nextReviewDate) 
+			throws FileNotFoundException, IOException, ParseException {
 		
 		//converts the given "title" into the file path for the intended deck
-		File deckPath = getDeckFileFromTitle(title);
+		File deckPath = getDeckFileFromTitle(deckTitle);
 		
+		int cardIndex = cardIDToArrayIndex(deckTitle, cardID);
 		JSONArray changer = getDeckJSONArrayHand(deckPath);
-		int target = cardIDToArrayIndex(title, cardID);
-		if(key != null && key != "cardID" && value != null){
-
-			JSONObject jack = (JSONObject) changer.get(target);
-			Card joker = cards.get(target);
-			
-			//Gets the attributes of the card
-			String frontSide = joker.getFrontSide();
-			String backSide = joker.getBackSide();
-			int rating = joker.getRating();
-			int repetition = joker.getRepetition();
-			int interval = joker.getInterval();
-			long nextReviewDate = joker.getNextReviewDate();
-			
-			jack.put(key, value);
-			Card king = setupCardFromJSONObject(jack);
-				
-			cards.add(king);
-			cards.remove(target);
-			jack.put(key2, value2);
-			jack.put(key3, value3);
-			jack.put(key4, value4);
-			changer.remove(target);
-			changer.add(jack);
-
-			JSONObject hand = getInitialJSONObject(deckPath);
-			hand.put("deck", changer);
-			writeToJSON(deckPath, hand);
 		
-			return true;
-			
-		}
+		Card jack = makeNewCard(deckTitle, frontSide, backSide, rating, repetition, interval, nextReviewDate);
+		//System.out.println(jack.getFrontSide() + jack.getBackSide() + jack.getID());
+		JSONObject joker = setupJSONObjectFromCard(jack);
+		changer.add(joker);
+		changer.remove(cardIndex);
 		
-		return false;
+		JSONObject hand = getInitialJSONObject(deckPath);
+		hand.put("deck", changer);
+		writeToJSON(deckPath, hand);
+		
+		generateDeck(deckTitle);
 		
 	}
 	

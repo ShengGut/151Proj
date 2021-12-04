@@ -44,7 +44,9 @@ public class CardReviewer {
 		
 		
 		try {
-		model.JSONWriter.updateCard(deckTitle, cardID, "nextReviewDate", nextReviewDate, "rating", rating, "repetition", repetition, "interval", interval);
+			String frontSide = card.getFrontSide();
+			String backSide = card.getBackSide();
+			model.JSONWriter.updateCard(deckTitle, cardID, frontSide, backSide, rating, repetition, interval, nextReviewDate);
 		
 		} catch (Exception e) {
 			e.printStackTrace();

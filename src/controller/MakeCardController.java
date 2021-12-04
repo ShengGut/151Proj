@@ -27,7 +27,6 @@ public class MakeCardController {
 	private int repetition = 0;
 	private int interval = 1;
 	private long nextReviewDate;
-	private long exactReviewMoment;
 	
 	public void frontEntry() {
 		frontSide = frontEntry.getText();
@@ -46,7 +45,7 @@ public class MakeCardController {
 		backEntry();
 		//ratingEntry();
 		
-		model.JSONWriter.createCard(title, frontSide, backSide, rating, repetition, interval, nextReviewDate, exactReviewMoment); 
+		model.JSONWriter.createCard(title, frontSide, backSide, rating, repetition, interval, nextReviewDate); 
 
 		
 		// Close pop-up window 
