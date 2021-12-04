@@ -196,9 +196,9 @@
                   <Insets left="290.0" />
                </VBox.margin>
             </TextField>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#createDeck" text="Add Deck">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#changeDeckName" text="Change Name">
                <VBox.margin>
-                  <Insets left="350.0" top="10.0" />
+                  <Insets left="337.0" top="10.0" />
                </VBox.margin></Button>
          </children>
       </VBox>

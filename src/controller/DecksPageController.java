@@ -167,7 +167,7 @@ public class DecksPageController extends SceneController {
 	}
 
 	// This Creates the new Deck
-	public void createDeck(ActionEvent event) throws IOException, ParseException {
+	public void changeDeckName(ActionEvent event) throws IOException, ParseException {
 		titleEntry();
 		deck1.setText(title);
 		// clear the TextEntry when finished
