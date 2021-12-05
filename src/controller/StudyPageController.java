@@ -30,7 +30,8 @@ public class StudyPageController extends SceneController {
 	@FXML Line line1, line2;
 	static int x = 0;
 	static String title;
-
+	private ArrayList<Card> Cards;
+	//private int newCardId =  -1;
 	// added from StudyController
 	private static int rating;
 
@@ -75,7 +76,7 @@ public class StudyPageController extends SceneController {
 						} else {
 							cardPosition.setText(startingCard + "/" + setNumberOfCards());
 							model.JSONReader.getArrayOfDeck(title);
-							ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(title);
+							Cards = model.JSONReader.getArrayOfDeck(title);
 							// set the frontSide and backSide text on the first card to display
 							frontSide.setText(Cards.get(index).getFrontSide());
 							backSide.setText(Cards.get(index).getBackSide());
@@ -211,29 +212,29 @@ public class StudyPageController extends SceneController {
 		}
 		System.out.println("Break " + totalCards2);
 		System.out.println("index " + index);
-		//if (totalCards2 != 1) {
-			ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
-			System.out.println(Cards.size());
-			cardID = Cards.get(0).getID();
-			frontSide.setText(Cards.get(0).getFrontSide());
-			backSide.setText(Cards.get(0).getBackSide());
-			cardPosition.setText(totalCards2 + "/" + setNumberOfCards2());
-		//}
-		if (totalCards2 == 1) {
-			frontSide.setText("Done");
-			cardPosition.setText("0/0");
-		}
-		System.out.println("rating: " + rating);
-	}
+		if (totalCards2 != 1) {
+            ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
+            System.out.println(cardID + " This is card ID");
+            frontSide.setText(Cards.get(1).getFrontSide());
+            backSide.setText(Cards.get(1).getBackSide());
+            cardPosition.setText(totalCards2 + "/" + setNumberOfCards2());
+        }
+        if (totalCards2 == 1) {
+            frontSide.setText("Done");
+            cardPosition.setText("0/0");
+        }
+        System.out.println("rating: " + rating);
+    }
 
-	// call studyCalculation in CardReviewer on action when rating is selected
-	public void updateCardStats(ActionEvent event) throws IOException, ParseException {
-		if (setNumberOfCards2() > 0) {
-			getRatingEntry(event);
-			Card card = model.JSONReader.generateCard(title, cardID - 1);
-			CardReviewer.studyCalculation(card, rating);
-		}
-	}
+    // call studyCalculation in CardReviewer on action when rating is selected
+    public void updateCardStats(ActionEvent event) throws IOException, ParseException {
+        if (setNumberOfCards2() > 0) {
+            getRatingEntry(event);
+            Card card = model.JSONReader.generateCard(title, cardID - 1);
+            CardReviewer.studyCalculation(card, rating);
+
+        }
+    }
 
 	public void confirmDeletion(ActionEvent event) throws IOException {
 		if (startingCard != 0) {

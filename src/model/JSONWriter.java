@@ -163,6 +163,7 @@ public class JSONWriter extends JSONReader {
 		Card jack = makeNewCard(deckTitle, frontSide, backSide, rating, repetition, interval, nextReviewDate);
 		//System.out.println(jack.getFrontSide() + jack.getBackSide() + jack.getID());
 		JSONObject joker = setupJSONObjectFromCard(jack);
+		System.out.println("frontSide " + jack.getFrontSide() + " backSide " + jack.getBackSide() + " rating " + rating + " reps " + repetition + " interval " + interval + " nextReviewDate " + nextReviewDate);
 		changer.add(joker);
 		changer.remove(cardIndex);
 		

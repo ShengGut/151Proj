@@ -17,7 +17,7 @@ public class CardReviewer {
 		int interval = card.getInterval();
 		double difficulty = card.getDifficultyFactor();
 		
-		System.out.println("Testing studyCalculation activation");
+		//System.out.println("Testing studyCalculation activation");
 		assert rating >= 0  && rating <= 5: "Rating is a grading scale between 0 and 5";
 		
 		difficulty = Math.max(1.2, difficulty + 0.1 - (5.0 - rating) * (0.08 + (5.0 - rating) * 0.02));
@@ -47,6 +47,8 @@ public class CardReviewer {
 		try {
 			String frontSide = card.getFrontSide();
 			String backSide = card.getBackSide();
+			System.out.println("StudyCalculation frontSide: " + frontSide);
+			System.out.println("StudyCalculation backSide: " + backSide);
 			model.JSONWriter.updateCard(deckTitle, cardID, frontSide, backSide, rating, repetition, interval, nextReviewDate);
 		
 		} catch (Exception e) {

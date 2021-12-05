@@ -130,7 +130,6 @@ public class JSONReader {
     public static Card generateCard(String title, int cardIndex) 
             throws FileNotFoundException, IOException, ParseException {
         //Creates and returns a the Card object identified by int "cardIndex" in the JSON file "deckPath".
-		
 		//converts the given "title" into the file path for the intended deck
 		File deckPath = getDeckFileFromTitle(title);
 		
@@ -158,7 +157,6 @@ public class JSONReader {
         Card card = null;
         cards.removeAll(cards);
         int deckSize = getDeckJSONArrayHand(deckPath).size();
-        
         for(ia = 0; ia < deckSize; ia++) {
             card = generateCard(title, ia);
             cards.add(card);
@@ -185,9 +183,9 @@ public class JSONReader {
     	//generateDeck(title);
     	ArrayList<Card> hand = new ArrayList<Card>();
     	
-    	for(int ia = 0; ia < getDeckJSONArrayHand(deckPath).size(); ia++)
+    	for(int ia = 0; ia < getDeckJSONArrayHand(deckPath).size(); ia++) {
     		hand.add(generateCard(title, ia));
-    	
+    	}
     	return hand;
     	
     }

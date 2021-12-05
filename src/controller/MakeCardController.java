@@ -47,7 +47,6 @@ public class MakeCardController {
 		//ratingEntry();
 		
 		model.JSONWriter.createCard(title, frontSide, backSide, rating, repetition, interval, nextReviewDate); 
-
 		
 		// Close pop-up window 
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
