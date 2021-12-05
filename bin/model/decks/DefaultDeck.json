@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"deck":[],"deckTitle":"History FlashCards"}
+=======
+{"deck":[{"nextReviewDate":1638735055590,"backSide":"","difficultyFactor":2.5,"cardID":4,"rating":1,"interval":1,"frontSide":"qwe","repetition":0},{"nextReviewDate":1638735057869,"backSide":"","difficultyFactor":2.5,"cardID":5,"rating":1,"interval":1,"frontSide":"wer","repetition":0},{"nextReviewDate":1638735059510,"backSide":"","difficultyFactor":2.5,"cardID":6,"rating":1,"interval":1,"frontSide":"ert","repetition":0}],"deckTitle":"History FlashCards"}
+>>>>>>> 24ec0683485373daeaf1647c199f1d026b42bb89

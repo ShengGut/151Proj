@@ -90,6 +90,21 @@
                </font></Label>
             <Line fx:id="line1" endX="242.2928924560547" endY="208.2928924560547" opacity="0.0" startX="-100.0" stroke="RED" strokeWidth="2.0" />
             <Line fx:id="line2" endX="-242.2928924560547" endY="208.2928924560547" opacity="0.0" startX="97.41423034667969" startY="-0.7350739240646362" stroke="RED" strokeWidth="2.0" />
+            <Label fx:id="questLbl" text="Question">
+               <StackPane.margin>
+                  <Insets bottom="250.0" />
+               </StackPane.margin>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="ansLbl" text="Answer">
+               <StackPane.margin>
+                  <Insets bottom="250.0" />
+               </StackPane.margin>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></Label>
          </children>
       </StackPane>
       <StackPane prefHeight="145.0" prefWidth="800.0">
