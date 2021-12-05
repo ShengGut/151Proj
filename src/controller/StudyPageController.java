@@ -31,7 +31,6 @@ public class StudyPageController extends SceneController {
 	static int x = 0;
 	static String title;
 	private ArrayList<Card> Cards;
-	//private int newCardId =  -1;
 	// added from StudyController
 	private static int rating;
 
@@ -237,7 +236,7 @@ public class StudyPageController extends SceneController {
 			System.out.println(cardID + " This is card ID");
 			frontSide.setText(Cards.get(1).getFrontSide());
 			backSide.setText(Cards.get(1).getBackSide());
-			cardPosition.setText("1/" + setNumberOfCards2());
+			cardPosition.setText("1/" + (totalCards2-1));
 		}
 		if (totalCards2 == 1) {
 			frontSide.setText("Done");
