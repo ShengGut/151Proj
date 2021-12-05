@@ -133,6 +133,8 @@ public class JSONReader {
 		//converts the given "title" into the file path for the intended deck
 		File deckPath = getDeckFileFromTitle(title);
 		
+		//int cardIndex = cardIDToArrayIndex(title, cardID);
+		
         Card jack = null; 
         
         //Grabs the JSONArray of cards in the JSONFile using getDeckJSONArray()
