@@ -234,6 +234,7 @@ public class StudyPageController extends SceneController {
 			cardPosition.setText("1/" + (totalCards2 - 1));
 		}
 		if (totalCards2 == 1) {
+			backSide.setText("Welcome to the Back Side");
 			frontSide.setText("Done");
 			cardPosition.setText("0/0");
 		}
