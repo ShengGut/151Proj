@@ -45,7 +45,7 @@ public class DecksPageController extends SceneController {
 		title = titleEntry.getText();
 	}
 
-	// This is the controller to switch to DefaultDeck
+	// This is the controller to switch to Deck 1
 	public void switchToStudyPage1(MouseEvent event) throws IOException, ParseException {
 		hp.changer1();
 		mc.changer1();
@@ -58,7 +58,7 @@ public class DecksPageController extends SceneController {
 		stage.show();
 	}
 
-	// This is the controller to switch to CustomDeck2
+	// This is the controller to switch to Deck 2
 	public void switchToStudyPage2(MouseEvent event) throws IOException, ParseException {
 		hp.changer2();
 		mc.changer2();
@@ -71,7 +71,7 @@ public class DecksPageController extends SceneController {
 		stage.show();
 	}
 
-	// This is the controller to switch to CustomDeck3
+	// This is the controller to switch to Deck 3
 	public void switchToStudyPage3(MouseEvent event) throws IOException, ParseException {
 		hp.changer3();
 		mc.changer3();
@@ -84,7 +84,7 @@ public class DecksPageController extends SceneController {
 		stage.show();
 	}
 
-	// This is the controller to switch to CustomDeck4
+	// This is the controller to switch to Deck 4
 	public void switchToStudyPage4(MouseEvent event) throws IOException, ParseException {
 		hp.changer4();
 		mc.changer4();
@@ -97,7 +97,7 @@ public class DecksPageController extends SceneController {
 		stage.show();
 	}
 
-	// This is the controller to switch to CustomDeck5
+	// This is the controller to switch to Deck 5
 	public void switchToStudyPage5(MouseEvent event) throws IOException, ParseException {
 		hp.changer5();
 		mc.changer5();
@@ -110,7 +110,7 @@ public class DecksPageController extends SceneController {
 		stage.show();
 	}
 
-	// This is the controller to switch to CustomDeck6
+	// This is the controller to switch to Deck 6
 	public void switchToStudyPage6(MouseEvent event) throws IOException, ParseException {
 		hp.changer6();
 		mc.changer6();
@@ -123,7 +123,7 @@ public class DecksPageController extends SceneController {
 		stage.show();
 	}
 
-	// This is the controller to switch to CustomDeck7
+	// This is the controller to switch to Deck 7
 	public void switchToStudyPage7(MouseEvent event) throws IOException, ParseException {
 		hp.changer7();
 		mc.changer7();
@@ -136,7 +136,7 @@ public class DecksPageController extends SceneController {
 		stage.show();
 	}
 
-	// This is the controller to switch to CustomDeck8
+	// This is the controller to switch to Deck 8
 	public void switchToStudyPage8(MouseEvent event) throws IOException, ParseException {
 		hp.changer8();
 		mc.changer8();
@@ -149,7 +149,7 @@ public class DecksPageController extends SceneController {
 		stage.show();
 	}
 
-	// This is the controller to switch to CustomDeck9
+	// This is the controller to switch to Deck 9
 	public void switchToStudyPage9(MouseEvent event) throws IOException, ParseException {
 		hp.changer9();
 		mc.changer9();
@@ -162,7 +162,7 @@ public class DecksPageController extends SceneController {
 		stage.show();
 	}
 
-	// This is the controller to switch to CustomDeck10
+	// This is the controller to switch to Deck 10
 	public void switchToStudyPage10(MouseEvent event) throws IOException, ParseException {
 		hp.changer10();
 		mc.changer10();
@@ -174,17 +174,17 @@ public class DecksPageController extends SceneController {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	public void errorMsg(MouseEvent event) throws IOException {
 		errorLbl.setOpacity(1);
 	}
-	
-	// This controller allows you to select a deck
+
 	@FXML
 	Button deck1Btn, deck2Btn, deck3Btn, deck4Btn, deck5Btn, deck6Btn, deck7Btn, deck8Btn, deck9Btn, deck10Btn;
 	@FXML
 	Label deck1, deck2, deck3, deck4, deck5, deck6, deck7, deck8, deck9, deck10, deckSelectedLbl;
-
+	
+	//This function allows you to select a deck from clicking a button
 	public void deckChooser(ActionEvent event) throws IOException, ParseException, FileNotFoundException {
 		Object node = event.getSource();
 		Button b = (Button) node;
@@ -240,16 +240,18 @@ public class DecksPageController extends SceneController {
 			deck = 10;
 		}
 	}
-	
+
 	public void initialize() {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					errorLbl.setOpacity(0);
+					//Covers the home button if no decks have been selected yet
 					if (cover == 1) {
 						homeCover.setTranslateY(-100);
 					}
+					//Set the deck titles when the scene is initialized
 					File deckPath = new File("src/model/decks/DefaultDeck.json");
 					deck1.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
 					File deckPath2 = new File("src/model/decks/CustomDeck2.json");
@@ -277,16 +279,16 @@ public class DecksPageController extends SceneController {
 			}
 		});
 	}
-	
+
 	public static void homeBtnCover() {
 		cover = 1;
 	}
-	
+
 	public void afterDeckTitleUpdate() {
 		deck = 0;
 		deckSelectedLbl.setText("*No Deck Selected");
 	}
-	
+
 	// This changes the deck name
 	public void changeDeckName(ActionEvent event) throws IOException, ParseException, FileNotFoundException {
 		if (deck == 1) {
@@ -337,13 +339,13 @@ public class DecksPageController extends SceneController {
 			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
 			deck8.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
 			afterDeckTitleUpdate();
-		}else if (deck == 9) {
+		} else if (deck == 9) {
 			File deckPath = new File("src/model/decks/CustomDeck9.json");
 			titleEntry();
 			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);
 			deck9.setText(model.JSONReader.getDeckTitleFromFile(deckPath));
 			afterDeckTitleUpdate();
-		}else if (deck == 10) {
+		} else if (deck == 10) {
 			File deckPath = new File("src/model/decks/CustomDeck10.json");
 			titleEntry();
 			model.JSONWriter.publicUpdateDeckTitle(oldTitle, title);

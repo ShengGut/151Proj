@@ -12,26 +12,6 @@ import controller.Card;
 
 public class JSONWriter extends JSONReader {
 
-	/*
-	public static void writeToJSON(File deckPath, JSONObject hand) throws IOException {
-		//This method creates a FileWriter, converts a given JSONObject to JSONString, and then writes it to the given JSONFile.  
-		FileWriter fw = new FileWriter(deckPath);
-		fw.write(hand.toJSONString());
-		fw.close();
-	}
-
-	public static void fillDeckTemplate(File deckPath) throws IOException {
-		
-		JSONObject deck = new JSONObject();
-		JSONArray hand = new JSONArray();
-		deck.put("deck", hand);
-		String deckTitle = deckPath.getName();
-		deck.put("deckTitle", deckTitle.substring(0, deckTitle.length() - 5));
-		writeToJSON(deckPath, deck);
-		
-	}
-	*/
-
 	@SuppressWarnings("unchecked")
 	public static void updateDeckTitle(File deckPath, String title) 
 			throws FileNotFoundException, IOException, ParseException {
@@ -163,7 +143,7 @@ public class JSONWriter extends JSONReader {
 		Card jack = makeNewCard(deckTitle, frontSide, backSide, rating, repetition, interval, nextReviewDate);
 		//System.out.println(jack.getFrontSide() + jack.getBackSide() + jack.getID());
 		JSONObject joker = setupJSONObjectFromCard(jack);
-		System.out.println("frontSide " + jack.getFrontSide() + " backSide " + jack.getBackSide() + " rating " + rating + " reps " + repetition + " interval " + interval + " nextReviewDate " + nextReviewDate);
+		//System.out.println("frontSide " + jack.getFrontSide() + " backSide " + jack.getBackSide() + " rating " + rating + " reps " + repetition + " interval " + interval + " nextReviewDate " + nextReviewDate);
 		changer.add(joker);
 		changer.remove(cardIndex);
 		

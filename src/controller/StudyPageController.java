@@ -25,9 +25,12 @@ public class StudyPageController extends SceneController {
 	int startingCard = 1;
 	private int cardID;
 	int totalCards, totalCards2, index, toggle;
-	@FXML Label frontSide, backSide, cardPosition, deckTitle, removeLbl, questLbl, ansLbl;
-	@FXML Button removeBtn, confirmBtn, finishBtn, easyBtn, normalBtn, hardBtn, difficultBtn;
-	@FXML Line line1, line2;
+	@FXML
+	Label frontSide, backSide, cardPosition, deckTitle, removeLbl, questLbl, ansLbl;
+	@FXML
+	Button removeBtn, confirmBtn, finishBtn, easyBtn, normalBtn, hardBtn, difficultBtn;
+	@FXML
+	Line line1, line2;
 	static int x = 0;
 	static String title;
 	private ArrayList<Card> Cards;
@@ -40,23 +43,25 @@ public class StudyPageController extends SceneController {
 	@FXML
 	Polygon leftTriangle, rightTriangle;
 
+	//Total amount of cards in the Deck
 	public int setNumberOfCards() throws FileNotFoundException, IOException, ParseException {
 		ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(title);
 		totalCards = (Cards.size());
 		return totalCards;
 	}
-	
+
+	//Total amount of acrds in the Review Deck
 	public int setNumberOfCards2() throws FileNotFoundException, IOException, ParseException {
 		ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
 		totalCards2 = (Cards.size());
-		System.out.println("This is the total cards " + totalCards2);
-		if(totalCards2 == 0) {
-			//cardID = 0;
+		//System.out.println("This is the total cards " + totalCards2);
+		if (totalCards2 == 0) {
+			// cardID = 0;
 			index = 0;
 		}
 		return totalCards2;
 	}
-	
+
 	// Initialize the text to show the total amount of Cards in the deck
 	public void initialize() {
 		Platform.runLater(new Runnable() {
@@ -73,7 +78,7 @@ public class StudyPageController extends SceneController {
 						removeBtn.setTranslateX(0);
 						if (setNumberOfCards() == 0) {
 							deckTitle.setText(title);
-							System.out.println(title);
+							//System.out.println(title);
 							startingCard = 0;
 							cardPosition.setText(startingCard + "/" + setNumberOfCards());
 							frontSide.setText("Hello, please add a card");
@@ -86,12 +91,12 @@ public class StudyPageController extends SceneController {
 							frontSide.setText(Cards.get(index).getFrontSide());
 							backSide.setText(Cards.get(index).getBackSide());
 							// Get initial Card ID
-							System.out.println("index a " + index);
+							//System.out.println("index a " + index);
 							cardID = Cards.get(index).getID();
-							System.out.println("cardID a " + cardID);
+							//System.out.println("cardID a " + cardID);
 						}
 					}
-					if(x == 1) {
+					if (x == 1) {
 						easyBtn.setTranslateY(0);
 						normalBtn.setTranslateY(0);
 						hardBtn.setTranslateY(0);
@@ -110,9 +115,9 @@ public class StudyPageController extends SceneController {
 							frontSide.setText(Cards.get(index).getFrontSide());
 							backSide.setText(Cards.get(index).getBackSide());
 							// Get initial Card ID
-							System.out.println("index b " + index);
+							//System.out.println("index b " + index);
 							cardID = Cards.get(index).getID();
-							System.out.println("cardID b " + cardID);
+							//System.out.println("cardID b " + cardID);
 						}
 					}
 				} catch (IOException | ParseException e) {
@@ -122,7 +127,8 @@ public class StudyPageController extends SceneController {
 			}
 		});
 	}
-	
+
+	//This is for the Display Side-By-Side Button
 	public void ToggleBtn(ActionEvent event) throws IOException {
 		if (newX == 0) {
 			newX = -200;
@@ -158,8 +164,9 @@ public class StudyPageController extends SceneController {
 		}
 	}
 
+	//This is for the Flip Card Button
 	public void toggleFlip(ActionEvent event) throws IOException {
-		System.out.println("Testing toggleflip");
+		//System.out.println("Testing toggleflip");
 		if (toggle == 0) {
 			backSide.setOpacity(1);
 			frontSide.setOpacity(0);
@@ -175,23 +182,25 @@ public class StudyPageController extends SceneController {
 		}
 	}
 
+	//This is for the right arrow
 	public void nextArrow(MouseEvent event) throws IOException, ParseException {
 		if ((x == 0) && (startingCard != setNumberOfCards())) {
-				ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(title);
-				// Go through Cards to get their ID for removeCard
-				index++;
-				// Make cardID equal to the cardID of the index of i
-				cardID = Cards.get(index).getID();
-				startingCard++;
-				cardPosition.setText(startingCard + "/" + setNumberOfCards());
-				frontSide.setText(Cards.get(index).getFrontSide());
-				backSide.setText(Cards.get(index).getBackSide());
+			ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(title);
+			// Go through Cards to get their ID for removeCard
+			index++;
+			// Make cardID equal to the cardID of the index of i
+			cardID = Cards.get(index).getID();
+			startingCard++;
+			cardPosition.setText(startingCard + "/" + setNumberOfCards());
+			frontSide.setText(Cards.get(index).getFrontSide());
+			backSide.setText(Cards.get(index).getBackSide());
 		}
 		if (startingCard == 10) {
 			cardPosition.setPadding(new Insets(0, 0, 0, -4));
 		}
 	}
 
+	//This is for the left arrow
 	public void backArrow(MouseEvent event) throws IOException, ParseException {
 		if (startingCard != 1 && startingCard != 0) {
 			if (x == 0) {
@@ -210,22 +219,20 @@ public class StudyPageController extends SceneController {
 			}
 		}
 	}
-	
+
+	//Get the rating of t he card based on the button clicked
 	public void getRatingEntry(ActionEvent event) throws FileNotFoundException, IOException, ParseException {
 		Object node = event.getSource();
 		Button b = (Button) node;
 		System.out.println(b.getText());
 		if (b.getText().equals("Easy")) {
 			rating = 1;
-		}
-		else if (b.getText().equals("Normal"))  {
+		} else if (b.getText().equals("Normal")) {
 			rating = 2;
-		}
-		else if (b.getText().equals("Hard")) {
+		} else if (b.getText().equals("Hard")) {
 			rating = 3;
 
-		}
-		else if (b.getText().equals("Difficult")) {
+		} else if (b.getText().equals("Difficult")) {
 			rating = 4;
 		}
 
@@ -233,10 +240,10 @@ public class StudyPageController extends SceneController {
 		System.out.println("index " + index);
 		if (totalCards2 != 1) {
 			ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
-			System.out.println(cardID + " This is card ID");
+			//System.out.println(cardID + " This is card ID");
 			frontSide.setText(Cards.get(1).getFrontSide());
 			backSide.setText(Cards.get(1).getBackSide());
-			cardPosition.setText("1/" + (totalCards2-1));
+			cardPosition.setText("1/" + (totalCards2 - 1));
 		}
 		if (totalCards2 == 1) {
 			frontSide.setText("Done");
@@ -244,40 +251,42 @@ public class StudyPageController extends SceneController {
 		}
 		// Get initial Card ID
 		ArrayList<Card> Cards = controller.CardReviewer.returnShowingCards(title);
-		System.out.println("index c " + index);
+		//System.out.println("index c " + index);
 		cardID = Cards.get(index).getID();
-		System.out.println("cardID c " + cardID);
-		System.out.println("rating: " + rating);
+		//System.out.println("cardID c " + cardID);
+		//System.out.println("rating: " + rating);
 		setNumberOfCards2();
-		
+
 	}
 
-    // call studyCalculation in CardReviewer on action when rating is selected
-    public void updateCardStats(ActionEvent event) throws IOException, ParseException {
-        if (setNumberOfCards2() > 0) {
-            getRatingEntry(event);
-            int cardIndex = model.JSONReader.cardIDToArrayIndex(title, cardID);
-            System.out.println("ucs cardid " + cardID);
-            System.out.println("ucs cardindex " + cardIndex);
-        	Card card = model.JSONReader.generateCard(title, cardIndex);
-            CardReviewer.studyCalculation(card, rating);
+	// call studyCalculation in CardReviewer on action when rating is selected
+	public void updateCardStats(ActionEvent event) throws IOException, ParseException {
+		if (setNumberOfCards2() > 0) {
+			getRatingEntry(event);
+			int cardIndex = model.JSONReader.cardIDToArrayIndex(title, cardID);
+			//System.out.println("ucs cardid " + cardID);
+			//System.out.println("ucs cardindex " + cardIndex);
+			Card card = model.JSONReader.generateCard(title, cardIndex);
+			CardReviewer.studyCalculation(card, rating);
 
-        }
-    }
-
-	public void confirmDeletion(ActionEvent event) throws IOException {
-		if (startingCard != 0) {
-		removeBtn.setTranslateY(100);
-		finishBtn.setTranslateY(-80);
-		finishBtn.setTranslateX(37);
-		confirmBtn.setTranslateY(-80);
-		confirmBtn.setTranslateX(42);
-		removeLbl.setOpacity(1);
-		line1.setOpacity(1);
-		line2.setOpacity(1);
 		}
 	}
-	
+
+	//Confirm the deletion of the card
+	public void confirmDeletion(ActionEvent event) throws IOException {
+		if (startingCard != 0) {
+			removeBtn.setTranslateY(100);
+			finishBtn.setTranslateY(-80);
+			finishBtn.setTranslateX(37);
+			confirmBtn.setTranslateY(-80);
+			confirmBtn.setTranslateX(42);
+			removeLbl.setOpacity(1);
+			line1.setOpacity(1);
+			line2.setOpacity(1);
+		}
+	}
+
+	//Cancel the deletion of the card
 	public void cancelDeletion(ActionEvent event) throws IOException {
 		removeBtn.setTranslateY(0);
 		finishBtn.setTranslateY(0);
@@ -288,7 +297,7 @@ public class StudyPageController extends SceneController {
 		line1.setOpacity(0);
 		line2.setOpacity(0);
 	}
-	
+
 	// Call JSONWriter method in another class to delete the card
 	public void deleteCard(ActionEvent event) throws FileNotFoundException, IOException, ParseException {
 		// The deleteCard function only works if there is a card in the deck
@@ -300,14 +309,14 @@ public class StudyPageController extends SceneController {
 				backArrow(null);
 				// If the user tries to remove the first card, then it will transition to the
 				// second card
-			} else if ((x== 0) && (startingCard == 1 && setNumberOfCards() != 0)) {
+			} else if ((x == 0) && (startingCard == 1 && setNumberOfCards() != 0)) {
 				ArrayList<Card> Cards = model.JSONReader.getArrayOfDeck(title);
 				cardPosition.setText(startingCard + "/" + setNumberOfCards());
 				frontSide.setText(Cards.get(index).getFrontSide());
 				backSide.setText(Cards.get(index).getBackSide());
 				// Get the next cardID
 				cardID = Cards.get(index).getID();
-				System.out.println(cardID);
+				//System.out.println(cardID);
 			} else {
 				startingCard = 0;
 				if (x == 0) {
@@ -329,14 +338,17 @@ public class StudyPageController extends SceneController {
 		}
 	}
 
+	//Switch to the study page
 	public static void switchxTo0() {
-		x = 0;	
+		x = 0;
 	}
-	
+
+	//Switch to the review page
 	public static void switchxTo1() {
 		x = 1;
 	}
 
+	//Change the file path based on the deck selected
 	public void changer1() throws FileNotFoundException, IOException, ParseException {
 		File deckPath = new File("src/model/decks/DefaultDeck.json");
 		title = model.JSONReader.getDeckTitleFromFile(deckPath);

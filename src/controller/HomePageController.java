@@ -24,10 +24,13 @@ public class HomePageController extends JSONReader {
 
 	private Stage stage, popup;
 	private Scene scene;
-	@FXML MenuButton menuBtn;
-	@FXML Label totalCardsLbl, newCardLbl, reviewLbl;
+	@FXML
+	MenuButton menuBtn;
+	@FXML
+	Label totalCardsLbl, newCardLbl, reviewLbl;
 	int newCardIni, newCardAft, totalCards, newCardReviewIni, totalCardsReview;
-	@FXML Label deckTitle;
+	@FXML
+	Label deckTitle;
 	static String title;
 	StudyPageController sp = new StudyPageController();
 
@@ -71,8 +74,8 @@ public class HomePageController extends JSONReader {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
-	// This is the controller to switch to the StudyPage
+
+	// This is the controller to switch to the ReviewPage
 	public void switchToReviewPage(ActionEvent event) throws IOException {
 		controller.StudyPageController.switchxTo1();
 		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/StudyPage.fxml"));
@@ -82,18 +85,7 @@ public class HomePageController extends JSONReader {
 		stage.show();
 	}
 
-	// This is the controller for the deckChooser button
-	public void deckChooserBtn(ActionEvent event) throws IOException {
-		popup = new Stage();
-		popup.initModality(Modality.APPLICATION_MODAL);
-		popup.setTitle("Deck Viewer");
-		FlowPane root = (FlowPane) FXMLLoader.load(getClass().getResource("../view/DeckChooserPopup.fxml"));
-		scene = new Scene(root);
-		popup.setScene(scene);
-		popup.showAndWait();
-		;
-	}
-
+	//This displays the total number of cards in the deck
 	public int setNumberOfCards() throws FileNotFoundException, IOException, ParseException {
 		ArrayList<Card> cards = model.JSONReader.getArrayOfDeck(title);
 		newCardIni = totalCards;
@@ -102,6 +94,7 @@ public class HomePageController extends JSONReader {
 		return totalCards;
 	}
 	
+	//This displays the total number of review cards in the deck
 	public int setNumberOfReviews() throws FileNotFoundException, IOException, ParseException {
 		ArrayList<Card> cards = controller.CardReviewer.returnShowingCards(title);
 		newCardReviewIni = totalCardsReview;
@@ -109,7 +102,7 @@ public class HomePageController extends JSONReader {
 		reviewLbl.setText("" + totalCardsReview);
 		return totalCardsReview;
 	}
-	
+
 	public void initialize() {
 		Platform.runLater(new Runnable() {
 			@Override
@@ -142,15 +135,8 @@ public class HomePageController extends JSONReader {
 		}
 	}
 
-	/*
-	 * This is for testing the new stuff
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
-	
+
+	//Change the deckPath
 	public void changer1() throws FileNotFoundException, IOException, ParseException {
 		File deckPath = new File("src/model/decks/DefaultDeck.json");
 		title = model.JSONReader.getDeckTitleFromFile(deckPath);
@@ -160,42 +146,42 @@ public class HomePageController extends JSONReader {
 		File deckPath = new File("src/model/decks/CustomDeck2.json");
 		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
-	
+
 	public void changer3() throws FileNotFoundException, IOException, ParseException {
 		File deckPath = new File("src/model/decks/CustomDeck3.json");
 		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
-	
+
 	public void changer4() throws FileNotFoundException, IOException, ParseException {
 		File deckPath = new File("src/model/decks/CustomDeck4.json");
 		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
-	
+
 	public void changer5() throws FileNotFoundException, IOException, ParseException {
 		File deckPath = new File("src/model/decks/CustomDeck5.json");
 		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
-	
+
 	public void changer6() throws FileNotFoundException, IOException, ParseException {
 		File deckPath = new File("src/model/decks/CustomDeck6.json");
 		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
-	
+
 	public void changer7() throws FileNotFoundException, IOException, ParseException {
 		File deckPath = new File("src/model/decks/CustomDeck7.json");
 		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
-	
+
 	public void changer8() throws FileNotFoundException, IOException, ParseException {
 		File deckPath = new File("src/model/decks/CustomDeck8.json");
 		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
-	
+
 	public void changer9() throws FileNotFoundException, IOException, ParseException {
 		File deckPath = new File("src/model/decks/CustomDeck9.json");
 		title = model.JSONReader.getDeckTitleFromFile(deckPath);
 	}
-	
+
 	public void changer10() throws FileNotFoundException, IOException, ParseException {
 		File deckPath = new File("src/model/decks/CustomDeck10.json");
 		title = model.JSONReader.getDeckTitleFromFile(deckPath);

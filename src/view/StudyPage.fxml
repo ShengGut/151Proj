@@ -80,13 +80,13 @@
                   <Insets left="550.0" />
                </StackPane.margin>
             </Polygon>
-            <Label fx:id="backSide" alignment="CENTER" contentDisplay="CENTER" opacity="0.0" prefHeight="185.0" prefWidth="304.0" text="BackSide&#10;" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="backSide" alignment="CENTER" contentDisplay="TOP" opacity="0.0" prefHeight="185.0" prefWidth="304.0" text="BackSide&#10;" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="16.0" />
                </font></Label>
-            <Label fx:id="frontSide" alignment="CENTER" contentDisplay="CENTER" prefHeight="185.0" prefWidth="304.0" text="FrontSide&#10;&#10;&#10;" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="frontSide" alignment="CENTER" contentDisplay="TOP" prefHeight="185.0" prefWidth="304.0" text="FrontSide&#10;&#10;&#10;" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="16.0" />
                </font></Label>
             <Line fx:id="line1" endX="242.2928924560547" endY="208.2928924560547" opacity="0.0" startX="-100.0" stroke="RED" strokeWidth="2.0" />
             <Line fx:id="line2" endX="-242.2928924560547" endY="208.2928924560547" opacity="0.0" startX="97.41423034667969" startY="-0.7350739240646362" stroke="RED" strokeWidth="2.0" />
