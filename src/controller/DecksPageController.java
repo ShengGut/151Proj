@@ -353,6 +353,7 @@ public class DecksPageController extends SceneController {
 			afterDeckTitleUpdate();
 		}
 		// clear the TextEntry when finished
+		homeCover.setTranslateY(0);
 		titleEntry.clear();
 	}
 

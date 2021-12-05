@@ -32,6 +32,7 @@ public class JSONWriter extends JSONReader {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void removeCard(String title, int cardID) //give a "boolean" confirmation sorta thing
 			throws FileNotFoundException, IOException, ParseException {
 		//This code simply removes a chosen card from the deck using cardID.
@@ -55,6 +56,7 @@ public class JSONWriter extends JSONReader {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static JSONObject setupJSONObjectFromCard(Card jack) {
 		
 		JSONObject joker = new JSONObject();
@@ -71,6 +73,7 @@ public class JSONWriter extends JSONReader {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static boolean createCard(String title, String frontSide, String backSide, int rating, int repetition, int interval, long nextReviewDate)
 			throws FileNotFoundException, IOException, ParseException {
 		//Creates a Card instance using inputed parameters and adds it to the List of "cards".
@@ -131,6 +134,7 @@ public class JSONWriter extends JSONReader {
 	}
 	
 	//code is under development and is still experimental.
+	@SuppressWarnings("unchecked")
 	public static void updateCard(String deckTitle, int cardID, String frontSide, String backSide, int rating, int repetition, int interval, long nextReviewDate) 
 			throws FileNotFoundException, IOException, ParseException {
 		

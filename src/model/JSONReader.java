@@ -19,7 +19,8 @@ public class JSONReader {
 	protected static ArrayList<Card> cards = new ArrayList<Card>();
     private static final String DECKSPATH = "src/model/decks";
     private static final File DECKSDIRECTORY = new File(DECKSPATH);
-    private static final int TOTALDECKS = 10;
+    @SuppressWarnings("unused")
+	private static final int TOTALDECKS = 10;
 
     //@SuppressWarnings("unchecked")
 	public static void writeToJSON(File deckPath, JSONObject hand) throws IOException {
@@ -29,6 +30,7 @@ public class JSONReader {
 		fw.close();
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void fillDeckTemplate(File deckPath) throws IOException {
 		
 		JSONObject deck = new JSONObject();

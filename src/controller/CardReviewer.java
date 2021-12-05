@@ -17,7 +17,6 @@ public class CardReviewer {
 		int interval = card.getInterval();
 		double difficulty = card.getDifficultyFactor();
 
-		// System.out.println("Testing studyCalculation activation");
 		assert rating >= 0 && rating <= 4 : "Rating is a grading scale between 0 and 4";
 
 		difficulty = Math.max(1.2, difficulty + 0.1 - (5.0 - rating) * (0.08 + (5.0 - rating) * 0.02));
@@ -34,9 +33,6 @@ public class CardReviewer {
 		else
 			interval = (int) Math.round(interval * difficulty);
 
-//		System.out.println("StudyCalculation rating: " + rating);
-//		System.out.println("StudyCalculation repetition: " + repetition);
-//		System.out.println("StudyCalculation interval: " + interval);
 		int msInADay = 60 * 60 * 24 * 1000;
 		long present = System.currentTimeMillis();
 		long nextReviewDate = msInADay + present * interval;
@@ -46,8 +42,6 @@ public class CardReviewer {
 		try {
 			String frontSide = card.getFrontSide();
 			String backSide = card.getBackSide();
-//			System.out.println("StudyCalculation frontSide: " + frontSide);
-//			System.out.println("StudyCalculation backSide: " + backSide);
 			model.JSONWriter.updateCard(deckTitle, cardID, frontSide, backSide, rating, repetition, interval,
 					nextReviewDate);
 
@@ -56,6 +50,7 @@ public class CardReviewer {
 		}
 	}
 
+	//Check if the card is hidden
 	public static boolean isCardHidden(Card card) {
 
 		if (System.currentTimeMillis() >= card.getNextReviewDate())
@@ -64,6 +59,7 @@ public class CardReviewer {
 
 	}
 
+	//Array for the list of cards
 	public static ArrayList<Card> returnShowingCards(String deckTitle)
 			throws FileNotFoundException, IOException, ParseException {
 
@@ -79,6 +75,7 @@ public class CardReviewer {
 
 	}
 
+	//Change the file path based on the deck that is selected
 	public void changer1() throws FileNotFoundException, IOException, ParseException {
 		File deckPath = new File("src/model/decks/DefaultDeck.json");
 		title = model.JSONReader.getDeckTitleFromFile(deckPath);

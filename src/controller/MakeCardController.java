@@ -15,55 +15,57 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class MakeCardController {
-	@FXML
-	private TextArea frontEntry;
-	@FXML
-	private TextArea backEntry;
-	@FXML
-	private TextField ratingEntry;
-	@FXML
-	private Button close;
-	static String title;
+    @FXML
+    private TextArea frontEntry;
+    @FXML
+    private TextArea backEntry;
+    @FXML
+    private TextField ratingEntry;
+    @FXML
+    private Button close;
+    static String title;
 
-	private String frontSide = "";
-	private String backSide = "";
-	private int rating = 0;
-	private int repetition = 0;
-	private int interval = 1;
-	private long nextReviewDate;
+    private String frontSide = "";
+    private String backSide = "";
+    private int rating = 0;
+    private int repetition = 0;
+    private int interval = 1;
+    private long nextReviewDate;
+    
+    // get front side content
+    public void frontEntry() {
+        frontSide = frontEntry.getText();
+    }
+    // get back side content
+    public void backEntry() {
+        backSide = backEntry.getText();
+    }
+    //get the rating
+    public void ratingEntry() {
+        rating = Integer.valueOf(ratingEntry.getText());
+    }
+    
+    //create card 
+    public void createNewCard(ActionEvent event) throws FileNotFoundException, IOException, ParseException {
 
-	public void frontEntry() {
-		frontSide = frontEntry.getText();
-	}
+        frontEntry();
+        backEntry();
 
-	public void backEntry() {
-		backSide = backEntry.getText();
-	}
+        model.JSONWriter.createCard(title, frontSide, backSide, rating, repetition, interval, nextReviewDate);
 
-	public void ratingEntry() {
-		rating = Integer.valueOf(ratingEntry.getText());
-	}
+        // Close pop-up window
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setTitle("Card created");
+        window.close();
+    }
 
-	public void createNewCard(ActionEvent event) throws FileNotFoundException, IOException, ParseException {
+    public void closeWindow(ActionEvent event) throws IOException {
+        final Node source = (Node) event.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
 
-		frontEntry();
-		backEntry();
-
-		model.JSONWriter.createCard(title, frontSide, backSide, rating, repetition, interval, nextReviewDate);
-
-		// Close pop-up window
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		window.setTitle("Card created");
-		window.close();
-	}
-
-	public void closeWindow(ActionEvent event) throws IOException {
-		final Node source = (Node) event.getSource();
-		final Stage stage = (Stage) source.getScene().getWindow();
-		stage.close();
-	}
-
-	//Change deckPath
+    //Change deckPath
 	public void changer1() throws FileNotFoundException, IOException, ParseException {
 		File deckPath = new File("src/model/decks/DefaultDeck.json");
 		title = model.JSONReader.getDeckTitleFromFile(deckPath);
